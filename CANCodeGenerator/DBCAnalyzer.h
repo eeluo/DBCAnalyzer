@@ -1,10 +1,10 @@
 #pragma once
-
+#include "MessageAnalyzer.h"
+#include "SignalAnalyzer.h"
+#include "AttributeAnalyzer.h"
 #include <string>
 #include <vector>
 #include <cstdint>
-#include "MessageAnalyzer.h"
-#include "SignalAnalyzer.h"
 
 class DBCFileDescriptor {
 public:
@@ -14,14 +14,24 @@ public:
 	std::vector<Message> & Messages(void) {
 		return m_messages;
 	}
-
 	std::vector<Message> const & Messages(void) const {
 		return m_messages;
+	}
+
+	void AddAttribute(Attribute const & _attribute) {
+		m_attributes.push_back(_attribute);
+	}
+	std::vector<Attribute> & Attributes(void) {
+		return m_attributes;
+	}
+	std::vector<Attribute> const & Attributes(void) const {
+		return m_attributes;
 	}
 
 private:
 
 	std::vector<Message> m_messages; 
+	std::vector<Attribute> m_attributes;
 };
 
 
@@ -46,6 +56,7 @@ public:
 
 	bool MessageRecognizer(std::string const & _line, DBCFileDescriptor & _file_descriptor);
 	bool SignalRecognizer(std::string const & _line, Message & _msg);
+	bool AttributeRecognizer(std::string const & _line, DBCFileDescriptor & _file_descriptor);
 
 	uint8_t ChangMotorolaOrderMSBT2LSB(uint8_t start_bit, uint8_t signal_size);
 };

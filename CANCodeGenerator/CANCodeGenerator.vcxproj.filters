@@ -39,6 +39,18 @@
     <ClCompile Include="SingnalRecognizerTest.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="AttributeAnalyzer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="MessageAnalyzer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SignalAnalyzer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="AttributeAnalyzerTest.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SampleSource.h">
@@ -62,5 +74,13 @@
     <ClInclude Include="SignalAnalyzer.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="AttributeAnalyzer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="test.dbc">
+      <Filter>资源文件</Filter>
+    </None>
   </ItemGroup>
 </Project>

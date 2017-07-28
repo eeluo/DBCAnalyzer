@@ -34,6 +34,8 @@ public:
 	std::vector<Signal> const & Signals(void) const {
 		return m_signals;
 	}
+
+
 private:
 	std::string         m_message_name;
 	std::string			m_msg_transmitter;

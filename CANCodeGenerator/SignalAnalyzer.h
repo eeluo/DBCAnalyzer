@@ -65,6 +65,9 @@ public:
 	std::string const &GetValueType (void) const { return m_value_type; }
 	void SetValueType(std:: string const _value_type) { m_value_type = _value_type; }
 
+	/*bool SignalRecognizer(std::string const & _line, Message & _msg);
+	uint8_t ChangMotorolaOrderMSBT2LSB(uint8_t start_bit, uint8_t signal_size);*/
+
 private:
 	std::string m_signal_name;
 	uint8_t m_start_bit;

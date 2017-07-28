@@ -44,8 +44,10 @@ BO_ 786 MS_312h: 8 ENG_PHEV
  
 BA_DEF_ SG_ "GenSigTimeout_CMU_05" INT 0 65535;
 BA_DEF_  "NWID" HEX 0 255;
-BA_DEF_ "SamplePointMax" FLOAT 0 100;
-BA_DEF_  SG_ "RID" STRING;
-BA_DEF_  BO_ "TpTxIndex" INT 0 99;
-BA_DEF_  SG_ "FlexKomIsMotorola" ENUM "nein","ja";
+BA_DEF_  "SamplePointMax" FLOAT 0 100;
+BA_DEF_ BO_ "TpTxIndex" INT 0 99;
+BA_DEF_ BO_ "TpTxIndex" INT 0,99;
+BA_DEF_ SG_ "FlexKomIsMotorola" ENUM "hn9uin","fwjfa","buyfddd";
+BA_DEF_ SG_ "FlexKomIsMotorola" ENUM "nein";
+BA_DEF_ SG_ "RID" STRING;
  

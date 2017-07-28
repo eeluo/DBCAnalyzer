@@ -157,16 +157,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AttributeAnalyzer.cpp" />
+    <ClCompile Include="AttributeAnalyzerTest.cpp" />
     <ClCompile Include="CANCodeGenerator.cpp" />
     <ClCompile Include="CodeGenForDiffTool.cpp" />
     <ClCompile Include="CommonlibsForCodeGen.cpp" />
     <ClCompile Include="DBCAnalyzer.cpp" />
     <ClCompile Include="DBCAnalyzerTest.cpp" />
     <ClCompile Include="MainFile.cpp" />
+    <ClCompile Include="MessageAnalyzer.cpp" />
     <ClCompile Include="MessageRecognizerTest.cpp" />
+    <ClCompile Include="SignalAnalyzer.cpp" />
     <ClCompile Include="SingnalRecognizerTest.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AttributeAnalyzer.h" />
     <ClInclude Include="CANCodeGenerator.h" />
     <ClInclude Include="CodeGenForDiffTool.h" />
     <ClInclude Include="CommonlibsForCodeGen.h" />
@@ -174,6 +179,9 @@
     <ClInclude Include="MessageAnalyzer.h" />
     <ClInclude Include="SampleSource.h" />
     <ClInclude Include="SignalAnalyzer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="test.dbc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
