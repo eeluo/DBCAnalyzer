@@ -39,15 +39,6 @@
     <ClCompile Include="SingnalRecognizerTest.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="AttributeAnalyzer.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="MessageAnalyzer.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="SignalAnalyzer.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="AttributeAnalyzerTest.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -75,6 +66,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="AttributeAnalyzer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="NodeAnalyzer.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

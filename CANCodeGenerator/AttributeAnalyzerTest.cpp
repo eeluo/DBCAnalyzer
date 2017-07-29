@@ -15,6 +15,10 @@ TEST(AttributeAnalyzerTest, AttributeRecognizerTest) {
 	EXPECT_TRUE(dbc.AttributeRecognizer("BA_DEF_  BO_ \"TpTxIndex\" INT 0 99;", descriptor));
 	EXPECT_TRUE(dbc.AttributeRecognizer("BA_DEF_  SG_ \"FlexKomIsMotorola\" ENUM \"nein\",\"ja\";", descriptor));
 
+	EXPECT_TRUE(dbc.AttributeRecognizer("BA_DEF_DEF_  \"T78R - GTD\" \"\";", descriptor));
+	EXPECT_TRUE(dbc.AttributeRecognizer("BA_DEF_DEF_  \"CRmu - vty\" 0;", descriptor));
+	EXPECT_TRUE(dbc.AttributeRecognizer("BA_DEF_DEF_  \"fty - HY\" 50000.0;", descriptor));
+
 	/*EXPECT_FALSE(dbc.AttributeRecognizer("BO_ 1585 23MS_APPL1: 8 ENG_PHEV", descriptor));
 	EXPECT_FALSE(dbc.AttributeRecognizer("BO_ 1585 MS_APPL1: 8 ", descriptor));
 	EXPECT_FALSE(dbc.AttributeRecognizer("BO_ 1585 MS_APPL1:  ENG_PHEV", descriptor));*/

@@ -44,54 +44,8 @@ void DBCAnalyzer::AnalyzerDBCByLines(std::vector<std::string> const & _lines, DB
 			--iter;
 		}
 		AttributeRecognizer(*iter, _file_descriptor);
+		//NodeRecognizer(*iter, _file_descriptor);
 	}
-
-	/*for (auto iter = _lines.begin(); iter != _lines.end(); ++iter) {
-		if (AttributeRecognizer(*iter, _file_descriptor)) {
-			auto & att = _file_descriptor.Attributes().back();
-		}
-	}*/
-}
-
-//split模板函数的实现
-//template <typename A, typename B>
-//A split(const B& s, const B& delim, A result)
-//{
-//	std::string::size_type pos1, pos2;
-//	pos2 = s.find(delim);
-//	pos1 = 0;
-//	while (std::string::npos != pos2)
-//	{
-//		result.push_back(s.substr(pos1, pos2 - pos1));
-//
-//		pos1 = pos2 + delim.size();
-//		pos2 = s.find(delim, pos1);
-//	}
-//	if (pos1 != s.length()) {
-//		result.push_back(s.substr(pos1));
-//	}
-//		
-//	return result;
-//}
-
-template <typename A, typename B>
-A split(const B& s, const B& delim, A result)
-{
-	std::string::size_type pos1, pos2;
-	pos2 = s.find_first_of(delim);
-	pos1 = 0;
-	while (std::string::npos != pos2)
-	{
-		result.push_back(s.substr(pos1, pos2 - pos1));
-
-		pos1 = pos2 + 1;
-		pos2 = s.find_first_of(delim, pos1);
-	}
-	if (pos1 != s.length()) {
-		result.push_back(s.substr(pos1));
-	}
-
-	return result;
 }
 
 uint8_t message_size = 8;
@@ -168,9 +122,7 @@ bool DBCAnalyzer::SignalRecognizer(std::string const & _line, Message & _msg)
 	signal.SetByteOrder(std::stoi(m[5].str()));
 	signal.SetValueType(m[6].str());
 	std::string delim = ",";	
-	std::vector<std::string> rece_none;
-	signal.AddRece_unit(split(m[19].str(), delim, rece_none));
-	//signal.AddRece_unit(split1<std::vector<std::string>>(m[19].str(), delim));
+	signal.AddRece_unit(split<std::vector<std::string>>(m[19].str(), delim));
 	_msg.AddSignal(signal);
 
 	return true;
@@ -189,6 +141,7 @@ uint8_t DBCAnalyzer::ChangMotorolaOrderMSBT2LSB(uint8_t start_bit, uint8_t signa
 }
 
 bool DBCAnalyzer::AttributeRecognizer(std::string const & _line, DBCFileDescriptor & _file_descriptor) {
+	//attribute_definitions = { attribute_definition } ;
 	// attribute_definition = 'BA_DEF_' object_type attribute_name attribute_value_type ';';
 	//object_type = '' | 'BU_' | 'BO_' | 'SG_' | 'EV_' ;
 	//attribute_name = '"' C_identifier '"' ;
@@ -197,50 +150,72 @@ bool DBCAnalyzer::AttributeRecognizer(std::string const & _line, DBCFileDescript
 	//'FLOAT' double double |
 	//'STRING' |
 	//'ENUM'[char_string{ ',' char_string }]
-	std::regex raw_definition(R"(BA_DEF_\s+(BU_|BO_|SG_|EV_|\s?)\s+(\"([^"]*[a-zA-Z_](\w*))\")(.*);)");
+
+	//attribute_defaults = { attribute_default } ;
+	//attribute_default = 'BA_DEF_DEF_' attribute_name attribute_value ';';
+	//attribute_value = unsigned_integer | signed_integer | double | char_string;
+	std::regex raw_definition(R"(BA_DEF_\s+(BU_|BO_|SG_|EV_|\s?)\s+(\"([^"]*[a-zA-Z_](\w*))\")\s+(.*);)");
 	std::regex int_definition(R"(INT\s+([-]?\d+)\s+([-]?\d+))");
 	std::regex hex_definition(R"(HEX\s+([-]?\d+)\s+([-]?\d+))");
 	std::regex float_definition(R"(FLOAT\s+([-]?\d+(\.\d+)?)\s+([-]?\d+(\.\d+)?))");
 	std::regex string_definition(R"(STRING)");
-	std::regex enum_definition(R"(ENUM\s+(\"([^"]*[a-zA-Z_](\w*))\")(,\"([^"]*[a-zA-Z_](\w*))\")*)");
-	std::smatch m0,m1;
-	if (!std::regex_match(_line,m0,raw_definition)) { return false; }
-	//std::cout << m0[5].str();
+	std::regex enum_definition(R"(ENUM\s+(\"([^"]*)\")(,\"([^"]*)\")*)");
+
+	std::regex raw_default(R"(BA_DEF_DEF_\s+(\"([^"]*[a-zA-Z_](\w*))\")\s+(\d+|[-]?\d+|[-]?\d+(\.\d+)?|\"([^"]*)\");)");
+	std::smatch m0, m1;
+
+	if (!(std::regex_match(_line, m0, raw_definition) | std::regex_match(_line, m1, raw_default))) {
+		return false; 
+	}
 	bool enum_int = std::regex_match(m0[5].str(), int_definition);
 	bool enum_hex = std::regex_match(m0[5].str(), hex_definition);
 	bool enum_float = std::regex_match(m0[5].str(), float_definition);
 	bool enum_str = std::regex_match(m0[5].str(), string_definition);
 	bool enum_enum = std::regex_match(m0[5].str(), enum_definition);
 
-	if (!enum_int) {}
-	else if (!enum_hex) {}
-	else if (!enum_float) {}
-	else if (!enum_str) {}
-	else if (!enum_enum) {}
-	else { return false; }
+	if (!(enum_int | enum_hex | enum_float | enum_str | enum_enum | std::regex_match(_line, m1, raw_default))) {
+		return false;
+	}
 	
 	Attribute att;
-	att.SetObjType(m0[1].str());
-	att.SetAttributeName(m0[2].str());
-
-	if (enum_str) {
-		std::vector<std::string> vec_str;
-		vec_str.push_back("STRING");
-		att.AddValueType(vec_str);
+	if (std::regex_match(_line, m1, raw_default)) {
+		att.SetAttributeName(m1[1].str());
+		att.SetDefaultValue(m1[4].str());
 	}
-	//std::cout << m0[1].str() << "  " << m0[2].str() << std::endl;
-	//if (enum_int || enum_hex || enum_float || enum_enum) {
-		std::string delim = ", ";
-		std::vector<std::string> rece_none;
-		att.AddValueType(split(m0[5].str(), delim, rece_none));
-	//}
-	/*if(enum_str){
-		std::vector<std::string> vec_str;
-		vec_str.push_back(m0[5].str());
-		att.AddValueType(vec_str);
-	}*/
-
+	else {
+		att.SetObjType(m0[1].str());
+		att.SetAttributeName(m0[2].str());
+		if (enum_int) {
+			att.SetValueType(Attribute::INT);
+			std::string delim = ", ";
+			att.AddValueType(split<std::vector<std::string>>(m0[5].str(), delim));
+		}
+		if (enum_hex) {
+			att.SetValueType(Attribute::HEX);
+			std::string delim = ", ";
+			att.AddValueType(split<std::vector<std::string>>(m0[5].str(), delim));
+		}
+		if (enum_float) {
+			att.SetValueType(Attribute::FLOAT);
+			std::string delim = ", ";
+			att.AddValueType(split<std::vector<std::string>>(m0[5].str(), delim));
+		}
+		if (enum_enum) {
+			att.SetValueType(Attribute::ENUM);
+			std::string delim = ", ";
+			att.AddValueType(split<std::vector<std::string>>(m0[5].str(), delim));
+		}
+		if (enum_str) {
+			att.SetValueType(Attribute::STRING);
+			std::vector<std::string> vec_str;
+			vec_str.push_back(m0[5].str());
+			att.AddValueType(vec_str);
+		}
+	}
 	_file_descriptor.AddAttribute(att);
-
 	return true;
 }
+
+//bool NodeRecognizer(std::string const & _line, DBCFileDescriptor & _file_descriptor) {
+//
+//}

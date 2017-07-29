@@ -46,8 +46,13 @@ BA_DEF_ SG_ "GenSigTimeout_CMU_05" INT 0 65535;
 BA_DEF_  "NWID" HEX 0 255;
 BA_DEF_  "SamplePointMax" FLOAT 0 100;
 BA_DEF_ BO_ "TpTxIndex" INT 0 99;
-BA_DEF_ BO_ "TpTxIndex" INT 0,99;
-BA_DEF_ SG_ "FlexKomIsMotorola" ENUM "hn9uin","fwjfa","buyfddd";
+BA_DEF_ SG_ "FlexKomIsMotorola" ENUM "hn nri","fw--fa","buyf(d)";
 BA_DEF_ SG_ "FlexKomIsMotorola" ENUM "nein";
 BA_DEF_ SG_ "RID" STRING;
- 
+
+BA_DEF_DEF_  "dNBU" 0;
+BA_DEF_DEF_  "CRmu-vty" 0;
+BA_DEF_DEF_  "T78R-GTD" "";
+BA_DEF_DEF_  "fty-HY" 50000.0;
+
+BU_: TESTER TCU BMU2 CSM CMU_TEST CMU_12 CMU_11 CMU_10 CMU_09 CMU_08 CMU_07 CMU_06 CMU_05 CMU_04 CMU_03 CMU_02 CMU_01 CMU_00 BMU

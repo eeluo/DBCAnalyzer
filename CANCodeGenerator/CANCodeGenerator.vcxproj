@@ -157,7 +157,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AttributeAnalyzer.cpp" />
     <ClCompile Include="AttributeAnalyzerTest.cpp" />
     <ClCompile Include="CANCodeGenerator.cpp" />
     <ClCompile Include="CodeGenForDiffTool.cpp" />
@@ -165,9 +164,7 @@
     <ClCompile Include="DBCAnalyzer.cpp" />
     <ClCompile Include="DBCAnalyzerTest.cpp" />
     <ClCompile Include="MainFile.cpp" />
-    <ClCompile Include="MessageAnalyzer.cpp" />
     <ClCompile Include="MessageRecognizerTest.cpp" />
-    <ClCompile Include="SignalAnalyzer.cpp" />
     <ClCompile Include="SingnalRecognizerTest.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -177,6 +174,7 @@
     <ClInclude Include="CommonlibsForCodeGen.h" />
     <ClInclude Include="DBCAnalyzer.h" />
     <ClInclude Include="MessageAnalyzer.h" />
+    <ClInclude Include="NodeAnalyzer.h" />
     <ClInclude Include="SampleSource.h" />
     <ClInclude Include="SignalAnalyzer.h" />
   </ItemGroup>

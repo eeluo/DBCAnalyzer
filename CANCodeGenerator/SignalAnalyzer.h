@@ -50,7 +50,6 @@ public:
 
 	void AddRece_unit(std::vector<std::string> const & _rece_unit) {
 		m_rece_unit = _rece_unit;
-		//m_rece_unit.push_back(_rece_unit);
 	}
 	std::vector<std::string> & Rece_unit(void) {
 		return m_rece_unit;
@@ -65,8 +64,6 @@ public:
 	std::string const &GetValueType (void) const { return m_value_type; }
 	void SetValueType(std:: string const _value_type) { m_value_type = _value_type; }
 
-	/*bool SignalRecognizer(std::string const & _line, Message & _msg);
-	uint8_t ChangMotorolaOrderMSBT2LSB(uint8_t start_bit, uint8_t signal_size);*/
 
 private:
 	std::string m_signal_name;
