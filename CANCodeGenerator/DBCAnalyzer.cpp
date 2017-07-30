@@ -1,5 +1,5 @@
 #include "DBCAnalyzer.h"
-
+#include "DBCFileDescriptor.h"
 #include <regex>
 #include <fstream>
 #include <string>
@@ -44,11 +44,11 @@ void DBCAnalyzer::AnalyzerDBCByLines(std::vector<std::string> const & _lines, DB
 			--iter;
 		}
 		AttributeRecognizer(*iter, _file_descriptor);
-		//NodeRecognizer(*iter, _file_descriptor);
+		NodeRecognizer(*iter, _file_descriptor);
 	}
 }
 
-uint8_t message_size = 8;
+//uint8_t message_size = 8;
 
 bool DBCAnalyzer::MessageRecognizer(std::string const & _line, DBCFileDescriptor & _file_descriptor)
 {
@@ -85,7 +85,7 @@ bool DBCAnalyzer::SignalRecognizer(std::string const & _line, Message & _msg)
 		return false;
 	}
 
-	message_size = _msg.GetSize();
+	uint8_t message_size = _msg.GetSize();
 	uint8_t start_bit = atoi(m[3].str().c_str());   // Attention! start_bit should be : LSB position.
 	if (start_bit > 8 * message_size - 1 || start_bit <0) {
 		return false;
@@ -216,6 +216,18 @@ bool DBCAnalyzer::AttributeRecognizer(std::string const & _line, DBCFileDescript
 	return true;
 }
 
-//bool NodeRecognizer(std::string const & _line, DBCFileDescriptor & _file_descriptor) {
-//
-//}
+bool DBCAnalyzer::NodeRecognizer(std::string const & _line, DBCFileDescriptor & _file_descriptor) {
+	//nodes = 'BU_:' {node_name} ;
+	//node_name = C_identifier;
+	std::regex node_definition(R"(BU_:\s+(([a-zA-Z_]\w*\s*)*))");
+	std::smatch m;
+	if (!std::regex_match(_line, m, node_definition)) { return false; }
+
+	Node node;
+	std::string delim = " ";
+	node.AddNodeName(split<std::vector<std::string>>(m[1].str(),delim));
+
+	_file_descriptor.AddNode(node);
+
+	return true;
+}

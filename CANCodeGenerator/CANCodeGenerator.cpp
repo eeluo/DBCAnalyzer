@@ -1,5 +1,5 @@
 #include "CANCodeGenerator.h"
-
+#include "DBCFileDescriptor.h"
 #include <array>
 
 #include "CommonlibsForCodeGen.h"

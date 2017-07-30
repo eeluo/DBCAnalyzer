@@ -1,3 +1,8 @@
+/**@file
+*@brief 定义了一个Attribute类.
+*@author luoaling
+*@date 2017-7-27
+*/
 #pragma once
 #include <string>
 #include <vector>

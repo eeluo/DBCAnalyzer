@@ -173,6 +173,7 @@
     <ClInclude Include="CodeGenForDiffTool.h" />
     <ClInclude Include="CommonlibsForCodeGen.h" />
     <ClInclude Include="DBCAnalyzer.h" />
+    <ClInclude Include="DBCFileDescriptor.h" />
     <ClInclude Include="MessageAnalyzer.h" />
     <ClInclude Include="NodeAnalyzer.h" />
     <ClInclude Include="SampleSource.h" />

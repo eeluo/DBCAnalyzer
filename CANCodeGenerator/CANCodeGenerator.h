@@ -4,6 +4,7 @@
 #include <string>
 
 #include "DBCAnalyzer.h"
+#include "DBCFileDescriptor.h"
 
 
 class CANCodeGenerator
