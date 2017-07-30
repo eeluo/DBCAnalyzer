@@ -43,16 +43,16 @@ public:
 	}
 	bool IsUnsigned(void) const { return m_is_unsigned; }
 
-	double GetFactor() { return m_factor; };
+	double GetFactor(void) const { return m_factor; };
 	void SetFactor(double _factor)  { m_factor = _factor;}
 
-	double GetOffset() { return m_offset; }
+	double GetOffset(void) const { return m_offset; }
 	void SetOffset(double _offset) { m_offset = _offset; }
 
-	double GetMinimum() { return m_minimum; }
+	double GetMinimum(void) const { return m_minimum; }
 	void SetMinimum(double _minimum) { m_minimum = _minimum; }
 
-	double GetMaximum() { return m_maximum; }
+	double GetMaximum(void) const { return m_maximum; }
 	void SetMaximum(double _maximum) { m_maximum = _maximum; }
 
 	void SetUnit(std::string const _unit) {

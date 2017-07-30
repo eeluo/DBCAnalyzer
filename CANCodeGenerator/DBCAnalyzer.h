@@ -14,9 +14,9 @@
 
 /**
 *@class
-*@biref 输入一个DBC文件，输出一个DBC的文件标识符.
+*@biref 输入一个DBC文件，输出一个DBC的文件描述符.
 *
-*Analyze方法用于读取DBC文件，*Recognizer方法用于判断DBC的文件标识符
+*Analyze方法用于读取DBC文件，*Recognizer方法用于判断DBC的文件描述符
 *是否满足<DBC-File-Format-Documentation.pdf> 中的格式规范.
 *
 *@note ChangMotorolaOrderMSBT2LSB方法不能忽略,
@@ -34,16 +34,22 @@ public:
 	~DBCAnalyzer();
 
 public:
+	/**分析读取DBC文件*/
 	DBCFileDescriptor Analyze(std::string const & _file_name);
 
 //private:
 public:
+	/**@brief 按行来分析读取后的DBC文件是否符合标注规范,符合则形成相应的文件描述符*/
 	void AnalyzerDBCByLines(std::vector<std::string> const & _lines, DBCFileDescriptor & _file_descriptor);
-
+	/**@brief 分析message部分*/
 	bool MessageRecognizer(std::string const & _line, DBCFileDescriptor & _file_descriptor);
+	/**@brief 分析signal部分*/
 	bool SignalRecognizer(std::string const & _line, Message & _msg);
+	/**@brief 分析attribute部分*/
 	bool AttributeRecognizer(std::string const & _line, DBCFileDescriptor & _file_descriptor);
+	/**@brief 分析node部分*/
 	bool NodeRecognizer(std::string const & _line, DBCFileDescriptor & _file_descriptor);
+	/**@brief 在分析signal部分时需要用到*/
 	uint8_t ChangMotorolaOrderMSBT2LSB(uint8_t start_bit, uint8_t signal_size);
 };
 

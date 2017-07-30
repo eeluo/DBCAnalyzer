@@ -26,5 +26,5 @@ TEST(AttributeAnalyzerTest, AttributeRecognizerTest) {
 	EXPECT_FALSE(dbc.AttributeRecognizer("BO_ 1585 MS_APPL1:  ENG_PHEV", descriptor));*/
 	
 	
-	EXPECT_TRUE(dbc.NodeRecognizer("BU_: TESTER TCU BMU2 CSM CMU_TEST CMU_12 CMU_11 CMU_10 CMU_09 CMU_08 CMU_07 CMU_06 CMU_05", descriptor));
+//	EXPECT_TRUE(dbc.NodeRecognizer("BU_: TESTER TCU BMU2 CSM CMU_TEST CMU_12 CMU_11 CMU_10 CMU_09 CMU_08 CMU_07 CMU_06 CMU_05", descriptor));
 }

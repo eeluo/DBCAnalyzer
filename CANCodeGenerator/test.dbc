@@ -14,7 +14,7 @@ BO_ 1786 VIN: 8 ENG_PHEV
  SG_ VIN_MSG : 0|2@1+ (1,0) [0|0] ""  OCM,SRS,ACCS_FCM,ETACS,EPS,PHEV
  SG_ VIN_DATA : 15|56@0+ (1,0) [0|0] ""  OCM,SRS,ACCS_FCM,ETACS,EPS,PHEV
  
- BO_ 673 HEV_2A1h: 1 Vector__XXX
+BO_ 673 HEV_2A1h: 1 Vector__XXX
  SG_ HEV_MODE : 0|8@1+ (1,0) [0|0] ""  TCU,SRS
 
 BO_ 1048 GS_418h: 8 PHEV
@@ -80,7 +80,7 @@ BA_DEF_  "SamplePointMax" FLOAT 0 100;
 BA_DEF_ BO_ "TpTxIndex" INT 0 99;
 BA_DEF_ SG_ "FlexKomIsMotorola" ENUM "hn nri","fw--fa","buyf(d)";
 BA_DEF_ SG_ "FlexKomIsMotorola" ENUM "nein";
-BA_DEF_ SG_ "RID" STRING;
+BA_DEF_ SG_ "RID" STRING ;
 BA_DEF_ SG_  "FlexKomSID" INT 0 65535;
 BA_DEF_ SG_  "GenSigStartValue" HEX 0 4294967295;
 BA_DEF_ SG_  "FlexKomSigStartValue" STRING ;
