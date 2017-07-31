@@ -220,7 +220,7 @@ bool DBCAnalyzer::AttributeRecognizer(std::string const & _line, DBCFileDescript
 	//这是attribute_definition部分的正则表达式
 	//由于attribute_value_type变量较为复杂，这里将正则表达式分开，以便于对多种情况进行正则匹配
 	//匹配除了attribute_value_type部分的字符串的正则表达式
-	std::regex raw_definition(R"(BA_DEF_\s+(BU_|BO_|SG_|EV_|\s?)\s+(\"([^"]*[a-zA-Z_](\w*))\")\s+(.*);)");
+	std::regex raw_definition(R"(BA_DEF_\s(BU_|BO_|SG_|EV_|\s?)\s+(\"([^"]*[a-zA-Z_](\w*))\")\s+(.*);)");
 	//分别编写attribute_value_type部分的五种正则表达式
 	std::regex int_definition(R"(INT\s+([-]?\d+)\s+([-]?\d+))");
 	std::regex hex_definition(R"(HEX\s+([-]?\d+)\s+([-]?\d+))");
@@ -231,9 +231,13 @@ bool DBCAnalyzer::AttributeRecognizer(std::string const & _line, DBCFileDescript
 	std::regex raw_default(R"(BA_DEF_DEF_\s+(\"([^"]*[a-zA-Z_](\w*))\")\s+(\d+|[-]?\d+|[-]?\d+(\.\d+)?|\"([^"]*)\");)");
 	std::smatch m0, m1;//m0存储attribute_definition的匹配结果,m1存储attribute_default的匹配结果
 
-	if (!(std::regex_match(_line, m0, raw_definition) | std::regex_match(_line, m1, raw_default))) {
+	if (!(std::regex_match(_line, m0, raw_definition) || std::regex_match(_line, m1, raw_default))) {
 		return false; 
 	}
+	/*if ((!std::regex_match(_line, m0, raw_definition))&&(!std::regex_match(_line, m1, raw_default)))
+	{
+		return false;
+	}*/
 	//分别对attribute_value_type部分的五种情况进行正则匹配
 	bool enum_int = std::regex_match(m0[5].str(), int_definition);
 	bool enum_hex = std::regex_match(m0[5].str(), hex_definition);
@@ -244,6 +248,10 @@ bool DBCAnalyzer::AttributeRecognizer(std::string const & _line, DBCFileDescript
 	if (!(enum_int | enum_hex | enum_float | enum_str | enum_enum | std::regex_match(_line, m1, raw_default))) {
 		return false;
 	}
+	/*if (!enum_int && !enum_hex && !enum_float && !enum_str && !enum_enum && !std::regex_match(_line, m1, raw_default))
+	{
+		return false;
+	}*/
 	
 	Attribute att;
 	//对attribute_default部分变量赋值

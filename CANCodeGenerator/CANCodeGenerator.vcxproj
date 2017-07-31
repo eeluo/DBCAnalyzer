@@ -163,6 +163,7 @@
     <ClCompile Include="CommonlibsForCodeGen.cpp" />
     <ClCompile Include="DBCAnalyzer.cpp" />
     <ClCompile Include="DBCAnalyzerTest.cpp" />
+    <ClCompile Include="FindAndPrint.cpp" />
     <ClCompile Include="MainFile.cpp" />
     <ClCompile Include="MessageRecognizerTest.cpp" />
     <ClCompile Include="SingnalRecognizerTest.cpp" />
@@ -174,6 +175,7 @@
     <ClInclude Include="CommonlibsForCodeGen.h" />
     <ClInclude Include="DBCAnalyzer.h" />
     <ClInclude Include="DBCFileDescriptor.h" />
+    <ClInclude Include="FindAndPrint.h" />
     <ClInclude Include="MessageAnalyzer.h" />
     <ClInclude Include="NodeAnalyzer.h" />
     <ClInclude Include="SampleSource.h" />
