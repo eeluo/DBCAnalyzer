@@ -30,8 +30,6 @@ public:
 		ENUM
 	};
 
-public:
-
 	std::string const & ObjType() const { return m_obj_type; }
 	void SetObjType(std::string const & _obj_type) {
 		m_obj_type = _obj_type;

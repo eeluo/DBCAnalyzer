@@ -24,7 +24,7 @@
 *
 */
 
-class FindAndPrint {
+class FindAndPrint:public DBCFileDescriptor {
 
 public:
 	FindAndPrint();
