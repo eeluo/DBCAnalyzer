@@ -381,7 +381,7 @@ uint32_t DBCFileDescriptor::ObjectTypeSearch(AttributeValue::_ObjectType ot, std
 *  @param 参数2说明
 *  @return The number of signalvalues which have the id.
 */
-uint32_t DBCFileDescriptor::ObjectTypeSearch(AttributeValue::_ObjectType ot)
+uint32_t DBCFileDescriptor::ObjectTypeSearch(AttributeValue::_ObjectType ot, bool output, std::ostream & os)
 {
 	uint32_t num = 0;
 	for (auto iter = m_attributevalues.begin(); iter < m_attributevalues.end(); iter++)
@@ -389,6 +389,10 @@ uint32_t DBCFileDescriptor::ObjectTypeSearch(AttributeValue::_ObjectType ot)
 		if (iter->ObjectType() == ot)
 		{
 			num++;
+			if (output)
+			{
+				os << *iter << '\n';
+			}
 		}
 	}
 	return num;
@@ -427,7 +431,7 @@ uint32_t DBCFileDescriptor::SignalReceiversSearch(const std::string & srs,std::v
 *  @param 参数2说明
 *  @return The number of signalvalues which have the id.
 */
-uint32_t DBCFileDescriptor::SignalReceiversSearch(const std::string & srs)
+uint32_t DBCFileDescriptor::SignalReceiversSearch(const std::string & srs, bool output, std::ostream & os)
 {
 	int num = 0;
 	for (auto iter_message = Messages().begin(); iter_message < Messages().end(); iter_message++)
@@ -439,6 +443,10 @@ uint32_t DBCFileDescriptor::SignalReceiversSearch(const std::string & srs)
 				if (*iter_receiver == srs)
 				{
 					num++;
+					if (output)
+					{
+						os << *iter_signal << '\n';
+					}
 					break;
 				}
 			}
@@ -453,7 +461,7 @@ uint32_t DBCFileDescriptor::SignalReceiversSearch(const std::string & srs)
 *  @param 参数2说明
 *  @return The number of signalvalues which have the id.
 */
-uint32_t DBCFileDescriptor::MessageIdSearch(uint32_t id)
+uint32_t DBCFileDescriptor::MessageIdSearch(uint32_t id, bool output, std::ostream & os)
 {
 	uint32_t num = 0;
 	for (auto iter = Messages().begin(); iter < Messages().end(); iter++)
@@ -461,6 +469,10 @@ uint32_t DBCFileDescriptor::MessageIdSearch(uint32_t id)
 		if (iter->ID() == id)
 		{
 			num++;
+			if (output)
+			{
+				os << *iter << '\n';
+			}
 		}
 	}
 	return num;
@@ -492,7 +504,7 @@ uint32_t DBCFileDescriptor::MessageIdSearch(uint32_t id, std::vector<Message> & 
 *  @param 参数2说明
 *  @return The number of signalvalues which have the id.
 */
-uint32_t DBCFileDescriptor::CommentMessageIdSearch(uint32_t id)
+uint32_t DBCFileDescriptor::CommentMessageIdSearch(uint32_t id, bool output, std::ostream & os)
 {
 	uint32_t num = 0;
 	for (auto iter = Comments().begin(); iter < Comments().end(); iter++)
@@ -500,6 +512,10 @@ uint32_t DBCFileDescriptor::CommentMessageIdSearch(uint32_t id)
 		if (iter->MessageId() == id)
 		{
 			num++;
+			if (output)
+			{
+				os << *iter << '\n';
+			}
 		}
 	}
 	return num;
@@ -531,7 +547,7 @@ uint32_t DBCFileDescriptor::CommentMessageIdSearch(uint32_t id, std::vector<Comm
 *  @param 参数2说明
 *  @return The number of signalvalues which have the id.
 */
-uint32_t DBCFileDescriptor::SignalValueMessageIdSearch(uint32_t id)
+uint32_t DBCFileDescriptor::SignalValueMessageIdSearch(uint32_t id, bool output, std::ostream & os)
 {
 	uint32_t num = 0;
 	for (auto iter = SignalValues().begin(); iter < SignalValues().end(); iter++)
@@ -539,6 +555,10 @@ uint32_t DBCFileDescriptor::SignalValueMessageIdSearch(uint32_t id)
 		if (iter->MessageId() == id)
 		{
 			num++;
+			if (output)
+			{
+				os << *iter << '\n';
+			}
 		}
 	}
 	return num;

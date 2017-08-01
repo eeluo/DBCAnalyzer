@@ -20,8 +20,8 @@ public:
 	}
 	///search for  signal's receiver,the second parameter will contain these class
 	uint32_t SignalReceiversSearch(const std::string & srs, std::vector<Signal> & vs);
-	uint32_t SignalReceiversSearch(const std::string & srs);
-	uint32_t MessageIdSearch(uint32_t id);
+	uint32_t SignalReceiversSearch(const std::string & srs, bool output = false, std::ostream & os = std::cout);
+	uint32_t MessageIdSearch(uint32_t id, bool output = false, std::ostream & os = std::cout);
 	uint32_t MessageIdSearch(uint32_t id, std::vector<Message> & vc);
 
 	void AddComment(const Comment & _cmt)
@@ -32,7 +32,7 @@ public:
 	const std::vector<Comment> & Comments() const { return m_comments; }
 
 	///search for comment's message id,the second parameter will contain these class
-	uint32_t CommentMessageIdSearch(uint32_t id);
+	uint32_t CommentMessageIdSearch(uint32_t id, bool output = false, std::ostream & os = std::cout);
 	uint32_t CommentMessageIdSearch(uint32_t id, std::vector<Comment> & vc);
 
 	void AddAttributeValue(const AttributeValue & _atv)
@@ -43,7 +43,7 @@ public:
 	const std::vector<AttributeValue> & AttributeValues() const { return m_attributevalues; }
 
 	///search for attribute_value's object type,the second parameter will contain these class
-	uint32_t ObjectTypeSearch(AttributeValue::_ObjectType ot = AttributeValue::_);
+	uint32_t ObjectTypeSearch(AttributeValue::_ObjectType ot, bool output = false, std::ostream & os = std::cout);
 	uint32_t ObjectTypeSearch(AttributeValue::_ObjectType ot, std::vector<AttributeValue> & va);
 
 	void AddSignalValue(const SignalValue & _sv)
@@ -53,8 +53,8 @@ public:
 	std::vector<SignalValue> & SignalValues(){ return m_signalvalues; }
 	const std::vector<SignalValue> & SignalValues() const { return m_signalvalues; }
 
-	uint32_t SignalValueMessageIdSearch(uint32_t id);
-	uint32_t SignalValueMessageIdSearch(uint32_t id,std::vector<SignalValue> & vs);
+	uint32_t SignalValueMessageIdSearch(uint32_t id, bool output = false, std::ostream & os = std::cout);
+	uint32_t SignalValueMessageIdSearch(uint32_t id, std::vector<SignalValue> & vs);
 
 	///output
 	void PrintMessages(std::ostream & os);
