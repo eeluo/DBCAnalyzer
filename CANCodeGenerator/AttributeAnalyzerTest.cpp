@@ -44,9 +44,9 @@ public:
 	std::string att_name3 = descriptor.Attributes()[2].AttributeName();
 	std::string att_name1_d = descriptor.Attributes()[3].AttributeName();
 	std::string att_name2_d = descriptor.Attributes()[4].AttributeName();
-	Attribute::VALUE_TYPE value_type1 = descriptor.Attributes()[0].GetValueType();
-	Attribute::VALUE_TYPE value_type2 = descriptor.Attributes()[1].GetValueType();
-	Attribute::VALUE_TYPE value_type3 = descriptor.Attributes()[2].GetValueType();
+	std::string value_type1 = descriptor.Attributes()[0].ValueType()[0];
+	std::string value_type2 = descriptor.Attributes()[1].ValueType()[0];
+	std::string value_type3 = descriptor.Attributes()[2].ValueType()[0];
 	uint32_t att_val_min1 = std::stoi(descriptor.Attributes()[0].ValueType()[1]);
 	uint32_t att_val_min2 = std::stoi(descriptor.Attributes()[1].ValueType()[1]);
 	uint32_t att_val_max1 = std::stoi(descriptor.Attributes()[0].ValueType()[2]);
@@ -65,102 +65,179 @@ public:
 *
 *数值检验采用EXPECT_EQ和EXPECT_NE断言，
 *字符串检验采用EXPECT_STREQ和EXPECT_STRNE断言
-*枚举值检验采用
+*枚举值的检验通过字符串来检验
 */
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 //以下分别使用三个字符串，测试attribute_definion正确的 object_type
-//TEST_F(AttributeAnalyzerTest, objtype_true001) {
-//	EXPECT_TRUE(str1_d_re);
-//	EXPECT_STREQ("SG_", obj_type1.c_str());
-//}
-//TEST_F(AttributeAnalyzerTest, objtype_true002) {
-//	EXPECT_TRUE(str2_d_re);
-//	EXPECT_STREQ(" ", obj_type2.c_str());
-//}
-//TEST_F(AttributeAnalyzerTest, objtype_true003) {
-//	EXPECT_TRUE(str3_d_re);
-//	EXPECT_STREQ("BO_", obj_type3.c_str());
-//}
-////以下分别使用三个字符串，测试attribute_definion正确的 attribute_name
-//TEST_F(AttributeAnalyzerTest, attname_true001) {
-//	EXPECT_TRUE(str1_d_re);
-//	EXPECT_STREQ("\"GenSigTimeout_CMU_05\"", att_name1.c_str());
-//}
-//TEST_F(AttributeAnalyzerTest, attname_true002) {
-//	EXPECT_TRUE(str2_d_re);
-//	EXPECT_STREQ("\"NWID\"", att_name2.c_str());
-//}
-//TEST_F(AttributeAnalyzerTest, attname_true003) {
-//	EXPECT_TRUE(str3_d_re);
-//	EXPECT_STREQ("\"NWM - Botschaft\"", att_name3.c_str());
-//}
-////以下分别使用三个字符串，测试attribute_definion正确的 value_type，是一个枚举值
-//TEST_F(AttributeAnalyzerTest, valtype_true001) {
-//	EXPECT_TRUE(str1_d_re);
-//	EXPECT_EQ(INT, value_type1);
-//}
-//TEST_F(AttributeAnalyzerTest, valtype_enum_true002) {
-//	EXPECT_TRUE(str2_d_re);
-//	EXPECT_EQ("HEX", value_type2);
-//}
-//TEST_F(AttributeAnalyzerTest, valtype_enum_true003) {
-//	EXPECT_TRUE(str3_d_re);
-//	EXPECT_EQ("ENUM", value_type3);
-//}
+TEST_F(AttributeAnalyzerTest, objtype_true001) {
+	EXPECT_TRUE(str1_d_re);
+	EXPECT_STREQ("SG_", obj_type1.c_str());
+}
+TEST_F(AttributeAnalyzerTest, objtype_true002) {
+	EXPECT_TRUE(str2_d_re);
+	EXPECT_STREQ(" ", obj_type2.c_str());
+}
+TEST_F(AttributeAnalyzerTest, objtype_true003) {
+	EXPECT_TRUE(str3_d_re);
+	EXPECT_STREQ("BO_", obj_type3.c_str());
+}
+//以下分别使用三个字符串，测试attribute_definion正确的 attribute_name
+TEST_F(AttributeAnalyzerTest, attname_true001) {
+	EXPECT_TRUE(str1_d_re);
+	EXPECT_STREQ("\"GenSigTimeout_CMU_05\"", att_name1.c_str());
+}
+TEST_F(AttributeAnalyzerTest, attname_true002) {
+	EXPECT_TRUE(str2_d_re);
+	EXPECT_STREQ("\"NWID\"", att_name2.c_str());
+}
+TEST_F(AttributeAnalyzerTest, attname_true003) {
+	EXPECT_TRUE(str3_d_re);
+	EXPECT_STREQ("\"NWM - Botschaft\"", att_name3.c_str());
+}
+//以下分别使用三个字符串，测试attribute_definion正确的 value_type，是一个枚举值
+TEST_F(AttributeAnalyzerTest, valtype_enum_true001) {
+	EXPECT_TRUE(str1_d_re);
+	EXPECT_STREQ("INT", value_type1.c_str());
+}
+TEST_F(AttributeAnalyzerTest, valtype_enum_true002) {
+	EXPECT_TRUE(str2_d_re);
+	EXPECT_STREQ("HEX", value_type2.c_str());
+}
+TEST_F(AttributeAnalyzerTest, valtype_enum_true003) {
+	EXPECT_TRUE(str3_d_re);
+	EXPECT_STREQ("ENUM", value_type3.c_str());
+}
 //以下分别使用两个字符串，测试attribute_definion正确的 value_type，是一个数值
-//TEST_F(AttributeAnalyzerTest, valtype_minval_true001) {
-//	EXPECT_TRUE(str1_d_re);
-//	EXPECT_EQ(0, att_val_min1);
-//}
-//TEST_F(AttributeAnalyzerTest, valtype_minval_true002) {
-//	EXPECT_TRUE(str2_d_re);
-//	EXPECT_EQ(0, att_val_min2);
-//}
-//TEST_F(AttributeAnalyzerTest, valtype_maxval_true001) {
-//	EXPECT_TRUE(str1_d_re);
-//	EXPECT_EQ(65535, att_val_max1);
-//}
-//TEST_F(AttributeAnalyzerTest, valtype_maxval_true002) {
-//	EXPECT_TRUE(str2_d_re);
-//	EXPECT_EQ(255, att_val_max2);
-//}
-////以下使用一个字符串，测试attribute_definion正确的 value_type，是系列字符串，这里有两个
-//TEST_F(AttributeAnalyzerTest, valtype_str_true001) {
-//	EXPECT_TRUE(str3_d_re);
-//	EXPECT_STREQ("\"nein\"", att_val_enum1.c_str());
-//}
-//TEST_F(AttributeAnalyzerTest, valtype_str_true002) {
-//	EXPECT_TRUE(str3_d_re);
-//	EXPECT_STREQ("\"ja\"", att_val_enum2.c_str());
-//}
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-////以下分别使用两个字符串，测试attribute_default正确的 attribute_name
-//TEST_F(AttributeAnalyzerTest, attnamedef_true001) {
-//	EXPECT_TRUE(str1_dd_re);
-//	EXPECT_STREQ("\"BusType\"", att_name1_d.c_str());
-//}
-//TEST_F(AttributeAnalyzerTest, attnamedef_true002) {
-//	EXPECT_TRUE(str2_dd_re);
-//	EXPECT_STREQ("\"dNBU\"", att_name2_d.c_str());
-//}
-////以下分别使用两个字符串，测试attribute_default正确的 attribute_value
-//TEST_F(AttributeAnalyzerTest, attvaldef_true001) {
-//	EXPECT_TRUE(str1_dd_re);
-//	EXPECT_STREQ("\"\"", att_val_d1.c_str());
-//}
-//TEST_F(AttributeAnalyzerTest, attvaldef_true002) {
-//	EXPECT_TRUE(str2_dd_re);
-//	EXPECT_STREQ("0", att_val_d2.c_str());
-//}
+TEST_F(AttributeAnalyzerTest, valtype_minval_true001) {
+	EXPECT_TRUE(str1_d_re);
+	EXPECT_EQ(0, att_val_min1);
+}
+TEST_F(AttributeAnalyzerTest, valtype_minval_true002) {
+	EXPECT_TRUE(str2_d_re);
+	EXPECT_EQ(0, att_val_min2);
+}
+TEST_F(AttributeAnalyzerTest, valtype_maxval_true001) {
+	EXPECT_TRUE(str1_d_re);
+	EXPECT_EQ(65535, att_val_max1);
+}
+TEST_F(AttributeAnalyzerTest, valtype_maxval_true002) {
+	EXPECT_TRUE(str2_d_re);
+	EXPECT_EQ(255, att_val_max2);
+}
+//以下使用一个字符串，测试attribute_definion正确的 value_type，是系列字符串，这里有两个
+TEST_F(AttributeAnalyzerTest, valtype_str_true001) {
+	EXPECT_TRUE(str3_d_re);
+	EXPECT_STREQ("\"nein\"", att_val_enum1.c_str());
+}
+TEST_F(AttributeAnalyzerTest, valtype_str_true002) {
+	EXPECT_TRUE(str3_d_re);
+	EXPECT_STREQ("\"ja\"", att_val_enum2.c_str());
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+//以下分别使用三个字符串，测试attribute_definion错误的 object_type
+TEST_F(AttributeAnalyzerTest, objtype_false001) {
+	EXPECT_TRUE(str1_d_re);
+	EXPECT_STRNE("S_", obj_type1.c_str());
+}
+TEST_F(AttributeAnalyzerTest, objtype_false002) {
+	EXPECT_TRUE(str2_d_re);
+	EXPECT_STRNE("", obj_type2.c_str());
+}
+TEST_F(AttributeAnalyzerTest, objtype_false003) {
+	EXPECT_TRUE(str3_d_re);
+	EXPECT_STRNE("BO", obj_type3.c_str());
+}
+//以下分别使用三个字符串，测试attribute_definion错误的 attribute_name
+TEST_F(AttributeAnalyzerTest, attname_false001) {
+	EXPECT_TRUE(str1_d_re);
+	EXPECT_STRNE("GenSigTimeout_CMU_05", att_name1.c_str());
+}
+TEST_F(AttributeAnalyzerTest, attname_false002) {
+	EXPECT_TRUE(str2_d_re);
+	EXPECT_STRNE("\"NWI\"", att_name2.c_str());
+}
+TEST_F(AttributeAnalyzerTest, attname_false003) {
+	EXPECT_TRUE(str3_d_re);
+	EXPECT_STRNE("\"NWM_Botschaft\"", att_name3.c_str());
+}
+//以下分别使用三个字符串，测试attribute_definion错误的 value_type，是一个枚举值
+TEST_F(AttributeAnalyzerTest, valtype_false001) {
+	EXPECT_TRUE(str1_d_re);
+	EXPECT_STRNE("STRING", value_type1.c_str());
+}
+TEST_F(AttributeAnalyzerTest, valtype_enum_false002) {
+	EXPECT_TRUE(str2_d_re);
+	EXPECT_STRNE("HE", value_type2.c_str());
+}
+TEST_F(AttributeAnalyzerTest, valtype_enum_false003) {
+	EXPECT_TRUE(str3_d_re);
+	EXPECT_STRNE("ENUM ", value_type3.c_str());
+}
+//以下分别使用两个字符串，测试attribute_definion错误的 value_type，是一个数值
+TEST_F(AttributeAnalyzerTest, valtype_minval_false001) {
+	EXPECT_TRUE(str1_d_re);
+	EXPECT_NE(10, att_val_min1);
+}
+TEST_F(AttributeAnalyzerTest, valtype_minval_false002) {
+	EXPECT_TRUE(str2_d_re);
+	EXPECT_NE(0.1, att_val_min2);
+}
+TEST_F(AttributeAnalyzerTest, valtype_maxval_false001) {
+	EXPECT_TRUE(str1_d_re);
+	EXPECT_NE(128, att_val_max1);
+}
+TEST_F(AttributeAnalyzerTest, valtype_maxval_false002) {
+	EXPECT_TRUE(str2_d_re);
+	EXPECT_NE(65535, att_val_max2);
+}
+//以下使用一个字符串，测试attribute_definion错误的 value_type，是系列字符串，这里有两个
+TEST_F(AttributeAnalyzerTest, valtype_str_false001) {
+	EXPECT_TRUE(str3_d_re);
+	EXPECT_STRNE("nein", att_val_enum1.c_str());
+}
+TEST_F(AttributeAnalyzerTest, valtype_str_false002) {
+	EXPECT_TRUE(str3_d_re);
+	EXPECT_STRNE("\"ja \"", att_val_enum2.c_str());
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+//以下分别使用两个字符串，测试attribute_default正确的 attribute_name
+TEST_F(AttributeAnalyzerTest, attnamedef_true001) {
+	EXPECT_TRUE(str1_dd_re);
+	EXPECT_STREQ("\"BusType\"", att_name1_d.c_str());
+}
+TEST_F(AttributeAnalyzerTest, attnamedef_true002) {
+	EXPECT_TRUE(str2_dd_re);
+	EXPECT_STREQ("\"dNBU\"", att_name2_d.c_str());
+}
+//以下分别使用两个字符串，测试attribute_default正确的 attribute_value
+TEST_F(AttributeAnalyzerTest, attvaldef_true001) {
+	EXPECT_TRUE(str1_dd_re);
+	EXPECT_STREQ("\"\"", att_val_d1.c_str());
+}
+TEST_F(AttributeAnalyzerTest, attvaldef_true002) {
+	EXPECT_TRUE(str2_dd_re);
+	EXPECT_STREQ("0", att_val_d2.c_str());
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+//以下分别使用两个字符串，测试attribute_default错误的 attribute_name
+TEST_F(AttributeAnalyzerTest, attnamedef_false001) {
+	EXPECT_TRUE(str1_dd_re);
+	EXPECT_STRNE("\"Bus Type\"", att_name1_d.c_str());
+}
+TEST_F(AttributeAnalyzerTest, attnamedef_false002) {
+	EXPECT_TRUE(str2_dd_re);
+	EXPECT_STRNE("\"dNBU2\"", att_name2_d.c_str());
+}
+//以下分别使用两个字符串，测试attribute_default错误的 attribute_value
+TEST_F(AttributeAnalyzerTest, attvaldef_false001) {
+	EXPECT_TRUE(str1_dd_re);
+	EXPECT_STRNE("""", att_val_d1.c_str());
+}
+TEST_F(AttributeAnalyzerTest, attvaldef_false002) {
+	EXPECT_TRUE(str2_dd_re);
+	EXPECT_STRNE(0, att_val_d2.c_str());
+}
