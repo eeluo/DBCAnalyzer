@@ -13,23 +13,23 @@ std::ostream & operator<<(std::ostream & os, const AttributeValue & attribute_va
 	switch (attribute_value.ObjectType())
 	{
 	case AttributeValue::_:
-		os << "\tAttribute value's value: " << attribute_value.Value();
+		os <<"\tAttribute value's value: " << attribute_value.Value();
 		break;
 	case AttributeValue::BU_:
-		os << "\tAttribute value's node name: " << attribute_value.NodeName() <<
+		os << "\tBU_" << " Attribute value's node name: " << attribute_value.NodeName() <<
 			"\tAttribute value's value: " << attribute_value.Value();
 		break;
 	case AttributeValue::BO_:
-		os << "\tAttribute value's message id: " << attribute_value.MessageId() <<
+		os << "\tB0_" << " Attribute value's message id: " << attribute_value.MessageId() <<
 			"\tAttribute value's value: " << attribute_value.Value();
 		break;
 	case AttributeValue::SG_:
-		os << "\tAttribute value's message id: " << attribute_value.MessageId() <<
+		os << "\tSG_" << " Attribute value's message id: " << attribute_value.MessageId() <<
 			"\tAttribute value's signal name: " << attribute_value.SignalName() <<
 			"\tAttribute value's value: " << attribute_value.Value();
 		break;
 	case AttributeValue::EV_:
-		os << "\tAttribute value's env_var_name: " << attribute_value.EnvVarName() <<
+		os << "\tEV_" << " Attribute value's env_var_name: " << attribute_value.EnvVarName() <<
 			"\tAttribute value's value: " << attribute_value.Value();
 		break;
 		//NO default
