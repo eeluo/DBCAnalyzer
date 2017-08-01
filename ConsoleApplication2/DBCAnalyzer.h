@@ -4,6 +4,8 @@
 #include "Comment.h"
 #include "AttributeValue.h"
 #include "SignalValue.h"
+#include "AttributeAnalyzer.h"
+#include "NodeAnalyzer.h"
 
 class DBCFileDescriptor {
 public:
@@ -21,8 +23,12 @@ public:
 	///search for  signal's receiver,the second parameter will contain these class
 	uint32_t SignalReceiversSearch(const std::string & srs, std::vector<Signal> & vs);
 	uint32_t SignalReceiversSearch(const std::string & srs, bool output = false, std::ostream & os = std::cout);
-	uint32_t MessageIdSearch(uint32_t id, bool output = false, std::ostream & os = std::cout);
-	uint32_t MessageIdSearch(uint32_t id, std::vector<Message> & vc);
+	bool MessageIdSearch(uint32_t id, bool output = false, std::ostream & os = std::cout);
+	bool MessageIdSearch(uint32_t id, Message & vc);
+	bool MessageNameSearch(const std::string & name, bool output = false, std::ostream & os = std::cout);
+	bool MessageNameSearch(const std::string & name, Message & vc);
+	uint32_t MessagetransmitterSearch(const std::string & name, bool output = false, std::ostream & os = std::cout);
+	uint32_t MessagetransmitterSearch(const std::string & name, std::vector<Message> & vm);
 
 	void AddComment(const Comment & _cmt)
 	{
@@ -56,12 +62,35 @@ public:
 	uint32_t SignalValueMessageIdSearch(uint32_t id, bool output = false, std::ostream & os = std::cout);
 	uint32_t SignalValueMessageIdSearch(uint32_t id, std::vector<SignalValue> & vs);
 
+	void AddAttribute(Attribute const & _attribute) {
+		m_attributes.push_back(_attribute);
+	}
+	std::vector<Attribute> & Attributes(void) {
+		return m_attributes;
+	}
+	std::vector<Attribute> const & Attributes(void) const {
+		return m_attributes;
+	}
+
+	void AddNode(Node const & _nodes) {
+		m_nodes.push_back(_nodes);
+	}
+	std::vector<Node> & Nodes(void) {
+		return m_nodes;
+	}
+	std::vector<Node> const & Nodes(void) const {
+		return m_nodes;
+	}
+
 	///output
+	void PrintNodes(std::ostream & os);
 	void PrintMessages(std::ostream & os);
 	void PrintComments(std::ostream & os);
+	void PrintAttributes(std::ostream & os);
 	void PrintAttributeValues(std::ostream & os);
 	void PrintSignalValues(std::ostream & os);
 	void PrintDescriptor(std::ostream & os);
+	
 private:
 
 	std::vector<Message> m_messages;
@@ -69,6 +98,8 @@ private:
 	std::vector<Comment> m_comments;
 	std::vector<AttributeValue> m_attributevalues;
 	std::vector<SignalValue> m_signalvalues;
+	std::vector<Attribute> m_attributes;///< attributes容器包含了attribute部分
+	std::vector<Node> m_nodes;///< nodes容器包含了node部分
 };
 
 
@@ -95,6 +126,10 @@ private:
 	bool CommentRecognizer(std::string const & _line, DBCFileDescriptor & _file_descriptor);
 	bool AttributeValueRecognizer(std::string const & _line, DBCFileDescriptor & _file_descriptor);
 	bool SignalValueRecognizer(std::string const & _line, DBCFileDescriptor & _file_descriptor);
+	/**@brief 分析attribute部分*/
+	bool AttributeRecognizer(std::string const & _line, DBCFileDescriptor & _file_descriptor);
+	/**@brief 分析node部分*/
+	bool NodeRecognizer(std::string const & _line, DBCFileDescriptor & _file_descriptor);
 
 	bool SignalRecognizer(std::string const & _line, Message & _msg);
 

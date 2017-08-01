@@ -82,12 +82,14 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AttributeAnalyzer.h" />
     <ClInclude Include="AttributeValue.h" />
     <ClInclude Include="CANCodeGenerator.h" />
     <ClInclude Include="CodeGenForDiffTool.h" />
     <ClInclude Include="Comment.h" />
     <ClInclude Include="CommonlibsForCodeGen.h" />
     <ClInclude Include="Message.h" />
+    <ClInclude Include="NodeAnalyzer.h" />
     <ClInclude Include="SampleSource.h" />
     <ClInclude Include="Signal.h" />
     <ClInclude Include="SignalValue.h" />
@@ -96,6 +98,7 @@
     <ClInclude Include="DBCAnalyzer.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Attribute.cpp" />
     <ClCompile Include="AttributeValue.cpp" />
     <ClCompile Include="CANCodeGenerator.cpp" />
     <ClCompile Include="CodeGenForDiffTool.cpp" />
@@ -104,6 +107,7 @@
     <ClCompile Include="DBCAnalyzer.cpp" />
     <ClCompile Include="mainfile.cpp" />
     <ClCompile Include="Message.cpp" />
+    <ClCompile Include="Node.cpp" />
     <ClCompile Include="Signal.cpp" />
     <ClCompile Include="SignalValue.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -112,9 +116,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="CAN3_151215_CL_local.dbc" />
     <None Include="ClassDiagram.cd" />
-    <None Include="test.dbc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

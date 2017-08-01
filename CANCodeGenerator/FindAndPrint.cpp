@@ -196,7 +196,7 @@ void FindAndPrint::FindAttributeNameAndValueRangeByValueType(void) {
 			cin >> value;
 		}
 		Attribute::VALUE_TYPE type = Attribute::VALUE_TYPE(value);
-		for (auto const & att : descriptor.Attributes()) {
+		for (auto const & att : Attributes()) {
 			if ((type == att.GetValueType()) && (type != Attribute::ENUM) && (type != Attribute::STRING)) {
 				cout << "Name:" << att.AttributeName() << "  " << "min:" << att.ValueType()[1] << "  " << "max:" << att.ValueType()[2] << endl;
 			}

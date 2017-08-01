@@ -57,6 +57,12 @@
     <ClInclude Include="SignalValue.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="AttributeAnalyzer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="NodeAnalyzer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -92,14 +98,14 @@
     <ClCompile Include="Signal.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Attribute.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Node.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="test.dbc">
-      <Filter>资源文件</Filter>
-    </None>
-    <None Include="CAN3_151215_CL_local.dbc">
-      <Filter>资源文件</Filter>
-    </None>
     <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>
