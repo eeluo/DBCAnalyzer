@@ -131,14 +131,14 @@ using namespace std;
 *当TEST宏内的所有断言都通过时，说明正则表达式通过验证
 *
 */
-//TEST(NodeAnalyzerTest, NodeRecognizerTest) {
-//	DBCAnalyzer  dbc;
-//	DBCFileDescriptor descriptor;
-//	//以下node正确的字符串，测试结果均通过
-//	EXPECT_TRUE(dbc.NodeRecognizer("BU_: TCU TESTER SRS SAS PHEV OCM LDW_RLSM ENG_PHEV ACCS_FCM ABS_ASC", descriptor));
-//	EXPECT_TRUE(dbc.NodeRecognizer("BU_: TESTER TCU BMU2 CSM CMU_TEST CMU_12 CMU_11 CMU_10 CMU_09", descriptor));
-//	//以下node错误的字符串，测试结果均通过
-//	EXPECT_FALSE(dbc.NodeRecognizer("BU_ TESTER TCU BMU2 CSM CMU_TEST CMU_12 CMU_11 CMU_10 CMU_09", descriptor));//BU_后面应接一个冒号
-//	EXPECT_FALSE(dbc.NodeRecognizer("BU_: 9TESTER 8TCU BMU2 CSM CMU_TEST CMU_12 CMU_11", descriptor));//node_name不能以数字开头
-//	EXPECT_FALSE(dbc.NodeRecognizer("BU_: TESTER,TCU,BMU2 CSM CMU_TEST CMU_12 CMU_11 CMU_10 CMU_09", descriptor));//node_name之间应以空格分隔
-//}
+TEST(NodeAnalyzerTest, NodeRecognizerTest) {
+	DBCAnalyzer  dbc;
+	DBCFileDescriptor descriptor;
+	//以下node正确的字符串，测试结果均通过
+	EXPECT_TRUE(dbc.NodeRecognizer("BU_: TCU TESTER SRS SAS PHEV OCM LDW_RLSM ENG_PHEV ACCS_FCM ABS_ASC ", descriptor));
+	EXPECT_TRUE(dbc.NodeRecognizer("BU_: TESTER TCU BMU2 CSM CMU_TEST CMU_12 CMU_11 CMU_10 CMU_09", descriptor));
+	//以下node错误的字符串，测试结果均通过
+	EXPECT_FALSE(dbc.NodeRecognizer("BU_ TESTER TCU BMU2 CSM CMU_TEST CMU_12 CMU_11 CMU_10 CMU_09", descriptor));//BU_后面应接一个冒号
+	EXPECT_FALSE(dbc.NodeRecognizer("BU_: 9TESTER 8TCU BMU2 CSM CMU_TEST CMU_12 CMU_11", descriptor));//node_name不能以数字开头
+	EXPECT_FALSE(dbc.NodeRecognizer("BU_: TESTER,TCU,BMU2 CSM CMU_TEST CMU_12 CMU_11 CMU_10 CMU_09", descriptor));//node_name之间应以空格分隔
+}

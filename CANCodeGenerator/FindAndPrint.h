@@ -29,8 +29,18 @@ class FindAndPrint:public DBCFileDescriptor {
 public:
 	FindAndPrint();
 	~FindAndPrint();
-
-public:
+	FindAndPrint(const DBCFileDescriptor & d)
+	{
+		this->Nodes() = d.Nodes();
+		this->Attributes() = d.Attributes();
+		this->Messages() = d.Messages();
+	}
+	const FindAndPrint & operator=(const DBCFileDescriptor & d)
+	{
+		this->Nodes() = d.Nodes();
+		this->Attributes() = d.Attributes();
+		this->Messages() = d.Messages();
+	}
 	/**@brief 通过用于查找message_name和signal_name*/
 	void FindMessageAndSignalNameByNodeName(void);
 	/**@brief 通过用于查找message_name*/
