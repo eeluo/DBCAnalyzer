@@ -7,6 +7,10 @@
 *
 */
 #pragma once
+
+#ifndef _NODEANALYZER_H_
+#define _NODEANALYZER_H_
+
 #include <string>
 #include <vector>
 
@@ -37,3 +41,4 @@ public:
 private:
 	vector<string> m_node_name;
 };
+#endif // !_NODEANALYZER_H_

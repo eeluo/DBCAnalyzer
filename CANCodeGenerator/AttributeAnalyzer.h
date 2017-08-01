@@ -4,6 +4,10 @@
 *@date 2017-7-27
 */
 #pragma once
+
+#ifndef _ATTRIBUTE_H_
+#define _ATTRIBUTE_H_
+
 #include <string>
 #include <vector>
 #include <cstdint>
@@ -29,8 +33,6 @@ public:
 		STRING,
 		ENUM
 	};
-
-public:
 
 	std::string const & ObjType() const { return m_obj_type; }
 	void SetObjType(std::string const & _obj_type) {
@@ -81,5 +83,5 @@ private:
 	}
 */
 };
-
+#endif // !_ATTRIBUTE_H_
 

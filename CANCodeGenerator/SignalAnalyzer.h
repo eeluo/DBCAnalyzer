@@ -4,6 +4,10 @@
 *@date 2017-7-26
 */
 #pragma once
+
+#ifndef _SIGNALANALYZER_H_
+#define _SIGNALANALYZER_H_
+
 #include <string>
 #include <vector>
 #include <cstdint>
@@ -101,4 +105,4 @@ private:
 	std::string m_receiver;///< receiver指定了接收节点的名称,此处的m_receiver中包含了多个接收节点的名称，仅是为了输出时容易与DBC文件对比，并无意义
 	std::vector<std::string> m_rece_unit;///< 容器m_rece_unit用于存储receiver中的多个接收节点的名称进行分割后的各个接收节点名称
 };
-
+#endif // !_SIGNALANALYZER_H_

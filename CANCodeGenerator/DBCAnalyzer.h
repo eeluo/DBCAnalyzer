@@ -3,6 +3,10 @@
 *@author luoaling
 */
 #pragma once
+
+#ifndef _DBCANALYZER_H_
+#define _DBCANALYZER_H_
+
 #include "DBCFileDescriptor.h"
 #include "MessageAnalyzer.h"
 #include "SignalAnalyzer.h"
@@ -86,3 +90,4 @@ A split(const B& s, const B& delim)
 	}
 	return result;
 }
+#endif // !_DBCANALYZER_H_
