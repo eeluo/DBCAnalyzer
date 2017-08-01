@@ -28,8 +28,7 @@ FindAndPrint::~FindAndPrint() {
 *
 */
 void FindAndPrint::FindMessageAndSignalNameByNodeName(void) {
-	DBCAnalyzer dbc;
-	auto descriptor = dbc.Analyze("test.dbc");
+	
 	string str;
 	cout << "是否要查找节点？ Y:查找，N:不查找 ";
 	cin >> str;
@@ -53,11 +52,11 @@ void FindAndPrint::FindMessageAndSignalNameByNodeName(void) {
 *@param[in] str str即为发送节点transmitter的名称
 */
 void FindAndPrint::FindMessageNameByTransmitter(const string &str) {
-	DBCAnalyzer dbc;
-	auto descriptor = dbc.Analyze("test.dbc");
-	auto msg = descriptor.Messages();
+	
+	
+	auto msg = Messages();
 	cout << "对于发送节点 \"" << str << " \"" << ", 找到以下的message_name: " << endl;
-	for (auto const & _msg : descriptor.Messages()) {
+	for (auto const & _msg : Messages()) {
 		if (_msg.Transmitter() == str)
 		{
 			cout << _msg.Name() << endl;
@@ -75,11 +74,11 @@ void FindAndPrint::FindMessageNameByTransmitter(const string &str) {
 *@param[in] str str即为接收节点receiver的名称
 */
 void FindAndPrint::FindSignalsNameByReceiver(const string &str) {
-	DBCAnalyzer dbc;
+	
 	Signal sig;
-	auto descriptor = dbc.Analyze("test.dbc");
+	
 	cout << "对于接收节点 \"" << str << " \"" << ", 找到以下的signal_name: " << endl;
-	for (auto const & _msg : descriptor.Messages()) {
+	for (auto const & _msg : Messages()) {
 		for (auto const & _signal : _msg.Signals()) {
 			for (auto const & re_unit : _signal.Rece_unit()) {
 				if (re_unit == str)
@@ -99,8 +98,8 @@ void FindAndPrint::FindSignalsNameByReceiver(const string &str) {
 *@note 只能输入0~4范围内的整型，超出这个范围需要重新输入
 */
 void FindAndPrint::FindAttributeNameByValueType(void) {
-	DBCAnalyzer dbc;
-	auto descriptor = dbc.Analyze("test.dbc");
+	
+	
 	cout << "是否要查找属性名称？ Y:查找，N:不查找 ";
 	if (cin.get() == 'N') { cout << "退出查找" << endl; return; }
 	else {
@@ -114,7 +113,7 @@ void FindAndPrint::FindAttributeNameByValueType(void) {
 			cin >> value;
 		}
 		Attribute::VALUE_TYPE type = Attribute::VALUE_TYPE(value);
-		for (auto const & att : descriptor.Attributes()) {
+		for (auto const & att : Attributes()) {
 			if (type == att.GetValueType()) {
 				cout << att.AttributeName() << endl;
 			}
@@ -134,8 +133,8 @@ void FindAndPrint::FindAttributeNameByValueType(void) {
 此时输入整型3是错误的，因为STRING无数值、无字符串可以查找
 */
 void FindAndPrint::FindMaxAndMinValueByValueType(void) {
-	DBCAnalyzer dbc;
-	auto descriptor = dbc.Analyze("test.dbc");
+	
+	
 	cout << "STRING类型无法查找，ENUM类型是一系列字符串！" << endl;
 	cout << "是否要查找属性的数值范围？ Y:查找，N:不查找 ";
 	if (cin.get() == 'N') { cout << "退出查找" << endl; return; }
@@ -155,7 +154,7 @@ void FindAndPrint::FindMaxAndMinValueByValueType(void) {
 			cin >> value;
 		}
 		Attribute::VALUE_TYPE type = Attribute::VALUE_TYPE(value);
-		for (auto const & att : descriptor.Attributes()) {
+		for (auto const & att : Attributes()) {
 			if ((type == att.GetValueType()) && (type != Attribute::ENUM)) {
 				cout << "min:" << att.ValueType()[1] << "  " << "max:" << att.ValueType()[2] << endl;
 			}
@@ -182,8 +181,8 @@ void FindAndPrint::FindMaxAndMinValueByValueType(void) {
 此时输入整型3没有错误，但是只能查找到对应的attribute_name
 */
 void FindAndPrint::FindAttributeNameAndValueRangeByValueType(void) {
-	DBCAnalyzer dbc;
-	auto descriptor = dbc.Analyze("test.dbc");
+	
+	
 	cout << "是否要查找所有属性，包括名称、数值范围或系列字符串？ Y:查找，N:不查找 ";
 	if (cin.get() == 'N') { cout << "退出查找" << endl; return; }
 	else {
@@ -222,9 +221,9 @@ void FindAndPrint::FindAttributeNameAndValueRangeByValueType(void) {
 *@author luoaling
 */
 void FindAndPrint::PrintNodes(void) {
-	DBCAnalyzer dbc;
-	auto descriptor = dbc.Analyze("test.dbc");
-	for (auto const & it : descriptor.Nodes()) {
+	
+	
+	for (auto const & it : Nodes()) {
 		cout << "BU_: ";
 		for (auto const &it_no : it.NodeName()) {
 			cout << it_no << " ";
@@ -238,9 +237,9 @@ void FindAndPrint::PrintNodes(void) {
 *@author luoaling
 */
 void FindAndPrint::PrintMessage(void) {
-	DBCAnalyzer dbc;
-	auto descriptor = dbc.Analyze("test.dbc");
-	for (auto const & _msg : descriptor.Messages()) {
+	
+	
+	for (auto const & _msg : Messages()) {
 		cout << "BO_ " << _msg.ID() << " " << _msg.Name() << " : " << (int)_msg.GetSize() << " " << _msg.Transmitter() << endl;
 	}
 	cout << endl;
@@ -251,10 +250,10 @@ void FindAndPrint::PrintMessage(void) {
 *@author luoaling
 */
 void FindAndPrint::PrintMessages(void) {
-	DBCAnalyzer dbc;
+	
 	Signal sig;
-	auto descriptor = dbc.Analyze("test.dbc");
-	for (auto const & _msg : descriptor.Messages()) {
+	
+	for (auto const & _msg : Messages()) {
 		cout << "BO_ " << _msg.ID() << " " << _msg.Name() << " : " << (int)_msg.GetSize() << " " << _msg.Transmitter() << endl;
 		for (auto const & _signal : _msg.Signals()) {
 			cout << " SG_ " << _signal.Name() << " : " << (int)_signal.StartBit() << "|" << (int)_signal.SignalSize() << "@"
@@ -276,9 +275,9 @@ void FindAndPrint::PrintMessages(void) {
 *其中，default分支是attribute_default部分的内容
 */
 void FindAndPrint::PrintAttribute(void) {
-	DBCAnalyzer dbc;
-	auto descriptor = dbc.Analyze("test.dbc");
-	for (auto const & att : descriptor.Attributes())
+	
+	
+	for (auto const & att : Attributes())
 	{
 		Attribute::VALUE_TYPE type = att.GetValueType();
 		switch (type)
