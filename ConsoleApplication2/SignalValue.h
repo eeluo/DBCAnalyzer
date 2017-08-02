@@ -10,7 +10,7 @@
 
 void split_number_and_string(const std::string & _Str, std::vector<uint32_t> & _Vi, std::vector<std::string> & _Vs, char c = ' ');
 
-//deal with signal_value
+///deal with signal_value
 class SignalValue{
 public:
 	class value_description{

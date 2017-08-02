@@ -2,7 +2,7 @@
 #include "Comment.h"
 
 /**
-* output class comment
+*  @brief output class comment
 *  @param an ostream object
 *  @param class comment
 *  @return an ostream object

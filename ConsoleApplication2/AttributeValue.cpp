@@ -2,7 +2,7 @@
 #include "AttributeValue.h"
 
 /**
-* output class attributevalue
+*  @brief output class attributevalue
 *  @param an ostream object
 *  @param class attributevalue
 *  @return an ostream object
