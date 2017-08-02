@@ -516,12 +516,12 @@ void DBCFileDescriptor::PrintDescriptor(std::ostream & os) const
 }
 
 /**
-* 简要的函数说明文字
-*  @param 参数1说明
-*  @param 参数2说明
-*  @return The number of signalvalues which have the id.
+*  @brief search for attribute value's object type
+*  @param attribute value's object type
+*  @param attribute values which have this object type
+*  @return The number of attributevalues which have the object type
 */
-uint32_t DBCFileDescriptor::ObjectTypeSearch(AttributeValue::_ObjectType ot, std::vector<AttributeValue> & va)
+uint32_t DBCFileDescriptor::AttributeValueObjectTypeSearch(AttributeValue::_ObjectType ot, std::vector<AttributeValue> & va) const
 {
 	va.clear();
 	uint32_t num = 0;
@@ -537,12 +537,13 @@ uint32_t DBCFileDescriptor::ObjectTypeSearch(AttributeValue::_ObjectType ot, std
 }
 
 /**
-* 简要的函数说明文字
-*  @param 参数1说明
-*  @param 参数2说明
-*  @return The number of signalvalues which have the id.
+*  @brief search for attribute value's object type
+*  @param attribute value's object type
+*  @param output or not output
+*  @param output position
+*  @return The number of attributevalues which have the object type
 */
-uint32_t DBCFileDescriptor::ObjectTypeSearch(AttributeValue::_ObjectType ot, bool output, std::ostream & os)
+uint32_t DBCFileDescriptor::AttributeValueObjectTypeSearch(AttributeValue::_ObjectType ot, bool output, std::ostream & os) const
 {
 	uint32_t num = 0;
 	for (auto iter = m_attributevalues.begin(); iter < m_attributevalues.end(); iter++)
@@ -560,12 +561,12 @@ uint32_t DBCFileDescriptor::ObjectTypeSearch(AttributeValue::_ObjectType ot, boo
 }
 
 /**
-* 简要的函数说明文字
-*  @param 参数1说明
-*  @param 参数2说明
-*  @return The number of signalvalues which have the id.
+*  @brief search for signal's receiver
+*  @param signal's receiver
+*  @param the signals which have this receiver
+*  @return The number of receivers which have the receiver.
 */
-uint32_t DBCFileDescriptor::SignalReceiversSearch(const std::string & srs,std::vector<Signal> & vs)
+uint32_t DBCFileDescriptor::SignalReceiversSearch(const std::string & receiver,std::vector<Signal> & vs) const
 {
 	vs.clear();
 	int num = 0;
@@ -575,7 +576,7 @@ uint32_t DBCFileDescriptor::SignalReceiversSearch(const std::string & srs,std::v
 		{
 			for (auto iter_receiver = iter_signal->Receivers().begin(); iter_receiver < iter_signal->Receivers().end(); iter_receiver++)
 			{
-				if (*iter_receiver == srs)
+				if (*iter_receiver == receiver)
 				{
 					num++;
 					vs.push_back(*iter_signal);
@@ -588,12 +589,13 @@ uint32_t DBCFileDescriptor::SignalReceiversSearch(const std::string & srs,std::v
 }
 
 /**
-* 简要的函数说明文字
-*  @param 参数1说明
-*  @param 参数2说明
-*  @return The number of signalvalues which have the id.
+*  @brief search for signal's receiver
+*  @param signal's receiver
+*  @param output or not output
+*  @param output position
+*  @return The number of receivers which have the receiver.
 */
-uint32_t DBCFileDescriptor::SignalReceiversSearch(const std::string & srs, bool output, std::ostream & os)
+uint32_t DBCFileDescriptor::SignalReceiversSearch(const std::string & receiver, bool output, std::ostream & os) const
 {
 	int num = 0;
 	for (auto iter_message = Messages().begin(); iter_message < Messages().end(); iter_message++)
@@ -602,7 +604,7 @@ uint32_t DBCFileDescriptor::SignalReceiversSearch(const std::string & srs, bool 
 		{
 			for (auto iter_receiver = iter_signal->Receivers().begin(); iter_receiver < iter_signal->Receivers().end(); iter_receiver++)
 			{
-				if (*iter_receiver == srs)
+				if (*iter_receiver == receiver)
 				{
 					num++;
 					if (output)
@@ -618,12 +620,13 @@ uint32_t DBCFileDescriptor::SignalReceiversSearch(const std::string & srs, bool 
 }
 
 /**
-* 简要的函数说明文字
-*  @param 参数1说明
-*  @param 参数2说明
-*  @return The number of signalvalues which have the id.
+*  @brief search for message ID
+*  @param message ID
+*  @param output or not output
+*  @param output position
+*  @return have or not have
 */
-bool DBCFileDescriptor::MessageIdSearch(uint32_t id, bool output, std::ostream & os)
+bool DBCFileDescriptor::MessageIdSearch(uint32_t id, bool output, std::ostream & os)const
 {
 	for (auto iter = Messages().begin(); iter < Messages().end(); iter++)
 	{
@@ -645,7 +648,7 @@ bool DBCFileDescriptor::MessageIdSearch(uint32_t id, bool output, std::ostream &
 *  @param the message which has this ID
 *  @return have or not have
 */
-bool DBCFileDescriptor::MessageIdSearch(uint32_t id, Message & msg)
+bool DBCFileDescriptor::MessageIdSearch(uint32_t id, Message & msg) const
 {
 	for (auto iter = Messages().begin(); iter < Messages().end(); iter++)
 	{
@@ -687,7 +690,7 @@ bool DBCFileDescriptor::MessageNameSearch(const std::string & name, bool output,
 *  @param the message which has this name
 *  @return have or not have
 */
-bool DBCFileDescriptor::MessageNameSearch(const std::string & name, Message & msg)
+bool DBCFileDescriptor::MessageNameSearch(const std::string & name, Message & msg) const
 {
 	for (auto iter = Messages().begin(); iter < Messages().end(); iter++)
 	{
@@ -704,9 +707,9 @@ bool DBCFileDescriptor::MessageNameSearch(const std::string & name, Message & ms
 *  @brief search for comment's message ID
 *  @param comment's message ID
 *  @param output or not output
-*  @return The number of signalvalues which have the id.
+*  @return The number of comments which have the id.
 */
-uint32_t DBCFileDescriptor::CommentMessageIdSearch(uint32_t id, bool output, std::ostream & os)
+uint32_t DBCFileDescriptor::CommentMessageIdSearch(uint32_t id, bool output, std::ostream & os) const
 {
 	uint32_t num = 0;
 	for (auto iter = Comments().begin(); iter < Comments().end(); iter++)
@@ -722,57 +725,14 @@ uint32_t DBCFileDescriptor::CommentMessageIdSearch(uint32_t id, bool output, std
 	}
 	return num;
 }
-/**
-* 简要的函数说明文字
-*  @param 参数1说明
-*  @param 参数2说明
-*  @return The number of signalvalues which have the id.
-*/
-uint32_t DBCFileDescriptor::MessagetransmitterSearch(const std::string & name, bool output, std::ostream & os)
-{
-	uint32_t num = 0;
-	for (auto iter = Messages().begin(); iter < Messages().end(); iter++)
-	{
-		if (iter->Msgtransmitter() == name)
-		{
-			num++;
-			if (output)
-			{
-				os << *iter << '\n';
-			}
-		}
-	}
-	return num;
-}
 
 /**
-* 简要的函数说明文字
-*  @param 参数1说明
-*  @param 参数2说明
-*  @return The number of signalvalues which have the id.
+*  @brief search for comment's message ID
+*  @param comment's message ID
+*  @param the comments which have this ID
+*  @return The number of comments which have the id.
 */
-uint32_t DBCFileDescriptor::MessagetransmitterSearch(const std::string & name, std::vector<Message> & vm)
-{
-	vm.clear();
-	uint32_t num = 0;
-	for (auto iter = Messages().begin(); iter < Messages().end(); iter++)
-	{
-		if (iter->Msgtransmitter() == name)
-		{
-			num++;
-			vm.push_back(*iter);
-		}
-	}
-	return num;
-}
-
-/**
-* 简要的函数说明文字
-*  @param 参数1说明
-*  @param 参数2说明
-*  @return The number of signalvalues which have the id.
-*/
-uint32_t DBCFileDescriptor::CommentMessageIdSearch(uint32_t id, std::vector<Comment> & vc)
+uint32_t DBCFileDescriptor::CommentMessageIdSearch(uint32_t id, std::vector<Comment> & vc) const
 {
 	vc.clear();
 	uint32_t num = 0;
@@ -788,12 +748,58 @@ uint32_t DBCFileDescriptor::CommentMessageIdSearch(uint32_t id, std::vector<Comm
 }
 
 /**
-* 简要的函数说明文字
-*  @param 参数1说明
-*  @param 参数2说明
+*  @brief search for message transmitter
+*  @param message transmitter
+*  @param output or not output
+*  @param output position
+*  @return The number of messages which have the transimmter.
+*/
+uint32_t DBCFileDescriptor::MessagetransmitterSearch(const std::string & name, bool output, std::ostream & os) const
+{
+	uint32_t num = 0;
+	for (auto iter = Messages().begin(); iter < Messages().end(); iter++)
+	{
+		if (iter->Msgtransmitter() == name)
+		{
+			num++;
+			if (output)
+			{
+				os << *iter << '\n';
+			}
+		}
+	}
+	return num;
+}
+
+/**
+*  @brief search for message transmitter
+*  @param message transmitter
+*  @param the messages which have this transmitter
+*  @return The number of messages which have the transimmter.
+*/
+uint32_t DBCFileDescriptor::MessagetransmitterSearch(const std::string & name, std::vector<Message> & vm) const
+{
+	vm.clear();
+	uint32_t num = 0;
+	for (auto iter = Messages().begin(); iter < Messages().end(); iter++)
+	{
+		if (iter->Msgtransmitter() == name)
+		{
+			num++;
+			vm.push_back(*iter);
+		}
+	}
+	return num;
+}
+
+/**
+*  @brief search for signal value's message ID
+*  @param signal value's message ID
+*  @param ouput or not output
+*  @param ouput position 
 *  @return The number of signalvalues which have the id.
 */
-uint32_t DBCFileDescriptor::SignalValueMessageIdSearch(uint32_t id, bool output, std::ostream & os)
+uint32_t DBCFileDescriptor::SignalValueMessageIdSearch(uint32_t id, bool output, std::ostream & os) const
 {
 	uint32_t num = 0;
 	for (auto iter = SignalValues().begin(); iter < SignalValues().end(); iter++)
@@ -811,12 +817,12 @@ uint32_t DBCFileDescriptor::SignalValueMessageIdSearch(uint32_t id, bool output,
 }
 
 /**
-* 简要的函数说明文字
-*  @param 参数1说明
-*  @param 参数2说明
+*  @brief search for signal value's message ID
+*  @param signal value's message ID
+*  @param the signalvalues which have this ID
 *  @return The number of signalvalues which have the id.
 */
-uint32_t DBCFileDescriptor::SignalValueMessageIdSearch(uint32_t id, std::vector<SignalValue> & vs)
+uint32_t DBCFileDescriptor::SignalValueMessageIdSearch(uint32_t id, std::vector<SignalValue> & vs) const
 {
 	vs.clear();
 	uint32_t num = 0;

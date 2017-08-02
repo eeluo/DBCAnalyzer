@@ -20,15 +20,18 @@ public:
 	std::vector<Message> const & Messages(void) const {
 		return m_messages;
 	}
-	///search for  signal's receiver,the second parameter will contain these class
-	uint32_t SignalReceiversSearch(const std::string & srs, std::vector<Signal> & vs);
-	uint32_t SignalReceiversSearch(const std::string & srs, bool output = false, std::ostream & os = std::cout);
-	bool MessageIdSearch(uint32_t id, bool output = false, std::ostream & os = std::cout);
-	bool MessageIdSearch(uint32_t id, Message & vc);
+	///search for  signal's receiver
+	uint32_t SignalReceiversSearch(const std::string & receiver, std::vector<Signal> & vs)const;
+	uint32_t SignalReceiversSearch(const std::string & receiver, bool output = false, std::ostream & os = std::cout)const;
+
+	bool MessageIdSearch(uint32_t id, bool output = false, std::ostream & os = std::cout)const;
+	bool MessageIdSearch(uint32_t id, Message & vc)const;
+
 	bool MessageNameSearch(const std::string & name, bool output = false, std::ostream & os = std::cout);
-	bool MessageNameSearch(const std::string & name, Message & vc);
-	uint32_t MessagetransmitterSearch(const std::string & name, bool output = false, std::ostream & os = std::cout);
-	uint32_t MessagetransmitterSearch(const std::string & name, std::vector<Message> & vm);
+	bool MessageNameSearch(const std::string & name, Message & vc)const;
+
+	uint32_t MessagetransmitterSearch(const std::string & name, bool output = false, std::ostream & os = std::cout)const;
+	uint32_t MessagetransmitterSearch(const std::string & name, std::vector<Message> & vm)const;
 
 	void AddComment(const Comment & _cmt)
 	{
@@ -38,8 +41,8 @@ public:
 	const std::vector<Comment> & Comments() const { return m_comments; }
 
 	///search for comment's message id,the second parameter will contain these class
-	uint32_t CommentMessageIdSearch(uint32_t id, bool output = false, std::ostream & os = std::cout);
-	uint32_t CommentMessageIdSearch(uint32_t id, std::vector<Comment> & vc);
+	uint32_t CommentMessageIdSearch(uint32_t id, bool output = false, std::ostream & os = std::cout)const;
+	uint32_t CommentMessageIdSearch(uint32_t id, std::vector<Comment> & vc)const;
 
 	void AddAttributeValue(const AttributeValue & _atv)
 	{
@@ -49,8 +52,8 @@ public:
 	const std::vector<AttributeValue> & AttributeValues() const { return m_attributevalues; }
 
 	///search for attribute_value's object type,the second parameter will contain these class
-	uint32_t ObjectTypeSearch(AttributeValue::_ObjectType ot, bool output = false, std::ostream & os = std::cout);
-	uint32_t ObjectTypeSearch(AttributeValue::_ObjectType ot, std::vector<AttributeValue> & va);
+	uint32_t AttributeValueObjectTypeSearch(AttributeValue::_ObjectType ot, bool output = false, std::ostream & os = std::cout)const;
+	uint32_t AttributeValueObjectTypeSearch(AttributeValue::_ObjectType ot, std::vector<AttributeValue> & va)const;
 
 	void AddSignalValue(const SignalValue & _sv)
 	{
@@ -59,8 +62,8 @@ public:
 	std::vector<SignalValue> & SignalValues(){ return m_signalvalues; }
 	const std::vector<SignalValue> & SignalValues() const { return m_signalvalues; }
 
-	uint32_t SignalValueMessageIdSearch(uint32_t id, bool output = false, std::ostream & os = std::cout);
-	uint32_t SignalValueMessageIdSearch(uint32_t id, std::vector<SignalValue> & vs);
+	uint32_t SignalValueMessageIdSearch(uint32_t id, bool output = false, std::ostream & os = std::cout)const;
+	uint32_t SignalValueMessageIdSearch(uint32_t id, std::vector<SignalValue> & vs)const;
 
 	void AddAttribute(Attribute const & _attribute) {
 		m_attributes.push_back(_attribute);
@@ -93,13 +96,13 @@ public:
 	
 private:
 
-	std::vector<Message> m_messages;
+	std::vector<Message> m_messages;//<messages container include messages
 
-	std::vector<Comment> m_comments;
-	std::vector<AttributeValue> m_attributevalues;
-	std::vector<SignalValue> m_signalvalues;
-	std::vector<Attribute> m_attributes;///< attributes容器包含了attribute部分
-	std::vector<Node> m_nodes;///< nodes容器包含了node部分
+	std::vector<Comment> m_comments;//<comments container include comment
+	std::vector<AttributeValue> m_attributevalues;//< attributevalues container include attributevlaue
+	std::vector<SignalValue> m_signalvalues;//<signalvalues container include signalvalue
+	std::vector<Attribute> m_attributes;//< attributes container include attribute
+	std::vector<Node> m_nodes;//< nodes container include node
 };
 
 
