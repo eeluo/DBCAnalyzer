@@ -83,13 +83,13 @@ public:
 	}
 
 	///output
-	void PrintNodes(std::ostream & os);
-	void PrintMessages(std::ostream & os);
-	void PrintComments(std::ostream & os);
-	void PrintAttributes(std::ostream & os);
-	void PrintAttributeValues(std::ostream & os);
-	void PrintSignalValues(std::ostream & os);
-	void PrintDescriptor(std::ostream & os);
+	void PrintNodes(std::ostream & os)const;
+	void PrintMessages(std::ostream & os)const;
+	void PrintComments(std::ostream & os)const;
+	void PrintAttributes(std::ostream & os)const;
+	void PrintAttributeValues(std::ostream & os)const;
+	void PrintSignalValues(std::ostream & os)const;
+	void PrintDescriptor(std::ostream & os)const;
 	
 private:
 
