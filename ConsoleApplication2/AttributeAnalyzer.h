@@ -1,27 +1,33 @@
-/**@file
-*@brief 定义了一个Attribute类.
-*@author luoaling
-*@date 2017-7-27
+/**
+*  @file
+*  @brief Defines an Attribute class.
+*  @author luoaling
+*  @date 2017-7-27
 */
 #pragma once
+
+#ifndef _ATTRIBUTEANALYZER_H_
+#define _ATTRIBUTEANALYZER_H_
+
 #include <string>
 #include <vector>
 #include <cstdint>
 
 /**
-*@class
-*@biref 用户定义的属性是用来延长DBC文件对象的属性.
+*  @class
+*  @biref User-defined attributes are used to extend the properties of DBC file objects.
 *
-*Attribute类只包含属性定义部分，没有包含属性值，它包括两部分：
-*1.attribute_definition：其又包含object_type attribute_name attribute_value_type三部分
-*2.attribute_default：只包含attribute_name attribute_value两部分
+*  The Attribute class contains only the attribute definition part and
+*  does not contain the attribute value, which consists of two parts:
+*  1.attribute_definition：It also contains object_type, attribute_name,and attribute_value_type three parts.
+*  2.attribute_default：It contains only attribute_name attribute_value.
 *
 */
 
 class Attribute {
 
 public:
-	///  枚举VALUE_TYPE存储attribute_value_type的第一部分
+	///  Enumeration VALUE_TYPE storages the first part of the attribute_value_type.
 	enum VALUE_TYPE {
 		INT,
 		HEX,
@@ -62,23 +68,14 @@ public:
 
 private:
 
-	std::string m_obj_type;///< m_obj_type 只能是 '' | 'BU_' | 'BO_' | 'SG_' | 'EV_'中的一种
-	std::string m_att_name;///< m_att_name必须是带双引号的C风格标识符
-	std::string m_att_def_val;///< m_att_def_val 只能是unsigned_integer | signed_integer | double |char_string中的一种
-	std::vector<std::string> m_val_type;///< 用于存储attribute_value_type部分分割后的各子字符串
-	VALUE_TYPE m_value_type;///< 枚举变量定义
+	std::string m_obj_type;///< m_obj_type can only be '' | 'BU_' | 'BO_' | 'SG_' | 'EV_' .
+	std::string m_att_name;///< m_att_name must be a double-quoted C-identifier.
+	std::string m_att_def_val;///< m_att_def_val can only be unsigned_integer | signed_integer | double | char_string .
+	std::vector<std::string> m_val_type;///< Used to store the attribute_value_type part of the sub-string after the division.
+	VALUE_TYPE m_value_type;///< Enumeration variable definition.
 
-	/*int default_vi, max_vi, min_vi;
-	float default_vf, max_vf, min_vf;
-	
-	int GetDefaultValueInt() {
-		if (m_value_type != INT) {
-			throw exception("Come on, this is not a int type~~! you can't use this");
-		}
-		return default_vi;
-	}
-*/
 };
 
 std::ostream & operator<<(std::ostream & os, const Attribute & atb);
 
+#endif // !_ATTRIBUTEANALYZER_H_

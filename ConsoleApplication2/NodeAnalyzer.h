@@ -1,28 +1,36 @@
-/**@file
-*@brief 定义了一个Node类.
-*@author luoaling
-*@date 2017-7-29
+/**
+   @file
+*  @brief Defines a Node class.
+*  @author luoaling
+*  @date 2017-7-29
 *
-*在DBC文件中节点部分定义了所有参与节点的名称,在本节中定义的名称在本节中必须是唯一的.
+*  In the DBC file, the node part defines the names of all participating nodes. 
+*  The names defined in this section must be unique in this section.
 *
 */
 #pragma once
+
+#ifndef _NODEANALYZER_H_
+#define _NODEANALYZER_H_
+
 #include <string>
 #include <vector>
 
 
 /**
-*@class 
-*@biref Node类较为简单，只有一个存储了string类型 node_name 的vector容器变量.
+*  @class 
+*  @biref The Node class is simpler, with only one vector container variable that stores the string type node_name.
 *
-*在该类中利用AddNodeName方法添加节点的node_name,以及NodeName方法获取node_name.
+*  In this class, use the AddNodeName function to add the node's node_name, 
+*  and the NodeName function to get the node_name.
 *
 */
 class Node {
 
 public:
 
-	/**AddNodeName方法用于vector容器的赋值,而NodeName方法则是用于得到该容器.*/
+	/**The AddNodeName function is used to assign the vector container, 
+	   and the NodeName function is used to get the container.*/
 	void AddNodeName(std::vector<std::string> const & _node_name) {
 		m_node_name = _node_name;
 	}
@@ -40,3 +48,4 @@ private:
 
 std::ostream & operator<<(std::ostream & os, const Node & node);
 
+#endif // !_NODEANALYZER_H_

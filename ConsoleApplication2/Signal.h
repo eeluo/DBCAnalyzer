@@ -41,30 +41,35 @@
 	} while (0)
 
 /**
-*@brief string字符串的分割split模板函数.
-*@author luoaling
-*@date 2017-7-26
+*  @brief The split template function to split strings.
+*  @author luoaling
+*  @date 2017-7-26
 *
-*split函数可以通过输入string字符串和分隔符,可以同时输入多种分割符号,
-*分隔符之间也不需要间隔,返回一个存储了分割后各个子字符串的容器.
+*  The split function allows you to enter multiple divisions at the same time 
+*  by entering strings and delimiters. There is no need for an interval between 
+*  the delimiters. The function returns a container that stores the substrings after the division.
 *
-*@param[in] s,delim s为要分割的字符串,delim为分隔符.
-*@return 返回一个存储了子字符串的result容器.
-*@note split函数无法同时处理多个分隔符
-*能处理:123,456 789;
-*不能处理:123,.456 789;
+*  @param[in] s s is the string you want to split.
+*  @param[in] delim delim is the delimiter.
+*
+*  @return Returns a result container that stores the substring.
+*
+*  @note The split function can not handle multiple delimiters at the same time:
+*  Can handle:123,456 789;
+*  Can not handle:123,.456 789;
+*
 */
 template <typename A, typename B>
 A split(const B& s, const B& delim)
 {
 	A result;
 	std::string::size_type pos1, pos2;
-	pos2 = s.find_first_of(delim);///< pos2用于找到出现分隔符集合中的首个位置
-	pos1 = 0;///< pos1初始化为字符串s的第一个字符的位置
-	while (std::string::npos != pos2)///< 是否找到分隔符
+	pos2 = s.find_first_of(delim);///< pos2 is used to find the first position where the separator set appears.
+	pos1 = 0;///< pos1 is initialized to the position of the first character of the string s.
+	while (std::string::npos != pos2)///< Whether to find a delimiter.
 	{
 		result.push_back(s.substr(pos1, pos2 - pos1));
-		///移动pos1和pos2的位置
+		///Move the pos1 and pos2 positions.
 		pos1 = pos2 + 1;
 		pos2 = s.find_first_of(delim, pos1);
 	}
