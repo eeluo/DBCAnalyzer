@@ -7,6 +7,10 @@
 *
 */
 #pragma once
+
+#ifndef _MESSAGEANALYZER_H_
+#define _MESSAGEANALYZER_H_
+
 #include <string>
 #include <vector>
 #include <cstdint>
@@ -63,4 +67,4 @@ private:
 	uint8_t             m_msg_size;///< message_size指定了消息的字节大小
 	std::vector<Signal> m_signals;///< signal部分列出放置在消息上的所有信号,它们在消息数据字段中的位置及其属性
 };
-
+#endif // !_MESSAGEANALYZER_H_

@@ -7,14 +7,10 @@
 *
 */
 #pragma once
-
-#ifndef _NODEANALYZER_H_
-#define _NODEANALYZER_H_
-
 #include <string>
 #include <vector>
 
-using namespace std;
+
 /**
 *@class 
 *@biref Node类较为简单，只有一个存储了string类型 node_name 的vector容器变量.
@@ -39,6 +35,8 @@ public:
 	}
 
 private:
-	vector<string> m_node_name;
+	std::vector<std::string> m_node_name;
 };
-#endif // !_NODEANALYZER_H_
+
+std::ostream & operator<<(std::ostream & os, const Node & node);
+

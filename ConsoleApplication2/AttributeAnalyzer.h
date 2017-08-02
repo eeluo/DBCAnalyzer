@@ -4,10 +4,6 @@
 *@date 2017-7-27
 */
 #pragma once
-
-#ifndef _ATTRIBUTE_H_
-#define _ATTRIBUTE_H_
-
 #include <string>
 #include <vector>
 #include <cstdint>
@@ -83,5 +79,6 @@ private:
 	}
 */
 };
-#endif // !_ATTRIBUTE_H_
+
+std::ostream & operator<<(std::ostream & os, const Attribute & atb);
 
