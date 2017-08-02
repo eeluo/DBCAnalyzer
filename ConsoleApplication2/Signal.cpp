@@ -2,7 +2,7 @@
 #include "Signal.h"
 
 /**
-* output class signal
+*  @brief output class signal
 *  @param an ostream object
 *  @param class signal
 *  @return an ostream object

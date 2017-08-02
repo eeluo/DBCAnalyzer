@@ -80,6 +80,9 @@
     <ClCompile Include="CommonlibsForCodeGen.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="mainfile.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
     <ClCompile Include="SignalValue.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -99,9 +102,6 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Node.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="mainfile.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

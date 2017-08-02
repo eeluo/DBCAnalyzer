@@ -31,7 +31,7 @@ void split_number_and_string(const std::string & _Str, std::vector<uint32_t> & _
 }
 
 /**
-* output class signalvalue
+*  @brief output class signalvalue
 *  @param an ostream object
 *  @param class signalvalue
 *  @return an ostream object

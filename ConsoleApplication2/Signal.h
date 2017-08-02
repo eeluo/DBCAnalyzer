@@ -19,7 +19,7 @@
 		for (auto _Iter = _S.begin(), _Flag = _S.begin();; _Iter++)	\
 		{			                   								\
 			if (_S.end() == _Iter)									\
-			{														\
+			{	/**the last string*/								\
 				_Container.push_back(std::string(_Flag, _Iter));	\
 				break;												\
 			}														\
@@ -45,8 +45,8 @@
 *  @author luoaling
 *  @date 2017-7-26
 *
-*  The split function allows you to enter multiple divisions at the same time 
-*  by entering strings and delimiters. There is no need for an interval between 
+*  The split function allows you to enter multiple divisions at the same time
+*  by entering strings and delimiters. There is no need for an interval between
 *  the delimiters. The function returns a container that stores the substrings after the division.
 *
 *  @param[in] s s is the string you want to split.
@@ -78,7 +78,8 @@ A split(const B& s, const B& delim)
 	}
 	return result;
 }
-//deal with signal
+
+///deal with signal
 class Signal {
 public:
 	void SetFactor(double factor)

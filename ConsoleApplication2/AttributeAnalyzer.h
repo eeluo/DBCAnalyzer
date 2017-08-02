@@ -55,7 +55,7 @@ public:
 	std::vector<std::string> const & ValueType(void) const {
 		return m_val_type;
 	}
-	
+
 	VALUE_TYPE GetValueType(void) const  { return m_value_type; }
 	void SetValueType(VALUE_TYPE _value_type) {
 		m_value_type = _value_type;
@@ -78,4 +78,5 @@ private:
 
 std::ostream & operator<<(std::ostream & os, const Attribute & atb);
 
-#endif // !_ATTRIBUTEANALYZER_H_
+#endif
+

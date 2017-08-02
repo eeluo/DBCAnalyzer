@@ -2,7 +2,7 @@
 #include "Message.h"
 
 /**
-* output class message
+*  @brief output class message
 *  @param an ostream object
 *  @param class message
 *  @return an ostream object

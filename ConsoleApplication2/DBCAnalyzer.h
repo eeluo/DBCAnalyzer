@@ -20,17 +20,6 @@ public:
 	std::vector<Message> const & Messages(void) const {
 		return m_messages;
 	}
-<<<<<<< HEAD
-	///search for  signal's receiver,the second parameter will contain these class
-	uint32_t SignalReceiversSearch(const std::string & srs, std::vector<Signal> & vs) const;
-	uint32_t SignalReceiversSearch(const std::string & srs, bool output = false, std::ostream & os = std::cout) const;
-	bool MessageIdSearch(uint32_t id, bool output = false, std::ostream & os = std::cout) const;
-	bool MessageIdSearch(uint32_t id, Message & vc) const;
-	bool MessageNameSearch(const std::string & name, bool output = false, std::ostream & os = std::cout) const;
-	bool MessageNameSearch(const std::string & name, Message & vc) const;
-	uint32_t MessagetransmitterSearch(const std::string & name, bool output = false, std::ostream & os = std::cout) const;
-	uint32_t MessagetransmitterSearch(const std::string & name, std::vector<Message> & vm) const;
-=======
 	///search for  signal's receiver
 	uint32_t SignalReceiversSearch(const std::string & receiver, std::vector<Signal> & vs)const;
 	uint32_t SignalReceiversSearch(const std::string & receiver, bool output = false, std::ostream & os = std::cout)const;
@@ -43,7 +32,6 @@ public:
 
 	uint32_t MessagetransmitterSearch(const std::string & name, bool output = false, std::ostream & os = std::cout)const;
 	uint32_t MessagetransmitterSearch(const std::string & name, std::vector<Message> & vm)const;
->>>>>>> 9475be87085c3c70ace0cd7122fcb51ddd3d8553
 
 	void AddComment(const Comment & _cmt)
 	{
@@ -53,13 +41,8 @@ public:
 	const std::vector<Comment> & Comments() const { return m_comments; }
 
 	///search for comment's message id,the second parameter will contain these class
-<<<<<<< HEAD
-	uint32_t CommentMessageIdSearch(uint32_t id, bool output = false, std::ostream & os = std::cout) const;
-	uint32_t CommentMessageIdSearch(uint32_t id, std::vector<Comment> & vc) const;
-=======
 	uint32_t CommentMessageIdSearch(uint32_t id, bool output = false, std::ostream & os = std::cout)const;
 	uint32_t CommentMessageIdSearch(uint32_t id, std::vector<Comment> & vc)const;
->>>>>>> 9475be87085c3c70ace0cd7122fcb51ddd3d8553
 
 	void AddAttributeValue(const AttributeValue & _atv)
 	{
@@ -69,13 +52,8 @@ public:
 	const std::vector<AttributeValue> & AttributeValues() const { return m_attributevalues; }
 
 	///search for attribute_value's object type,the second parameter will contain these class
-<<<<<<< HEAD
-	uint32_t ObjectTypeSearch(AttributeValue::_ObjectType ot, bool output = false, std::ostream & os = std::cout) const;
-	uint32_t ObjectTypeSearch(AttributeValue::_ObjectType ot, std::vector<AttributeValue> & va) const;
-=======
 	uint32_t AttributeValueObjectTypeSearch(AttributeValue::_ObjectType ot, bool output = false, std::ostream & os = std::cout)const;
 	uint32_t AttributeValueObjectTypeSearch(AttributeValue::_ObjectType ot, std::vector<AttributeValue> & va)const;
->>>>>>> 9475be87085c3c70ace0cd7122fcb51ddd3d8553
 
 	void AddSignalValue(const SignalValue & _sv)
 	{
@@ -84,13 +62,8 @@ public:
 	std::vector<SignalValue> & SignalValues(){ return m_signalvalues; }
 	const std::vector<SignalValue> & SignalValues() const { return m_signalvalues; }
 
-<<<<<<< HEAD
-	uint32_t SignalValueMessageIdSearch(uint32_t id, bool output = false, std::ostream & os = std::cout) const;
-	uint32_t SignalValueMessageIdSearch(uint32_t id, std::vector<SignalValue> & vs) const;
-=======
 	uint32_t SignalValueMessageIdSearch(uint32_t id, bool output = false, std::ostream & os = std::cout)const;
 	uint32_t SignalValueMessageIdSearch(uint32_t id, std::vector<SignalValue> & vs)const;
->>>>>>> 9475be87085c3c70ace0cd7122fcb51ddd3d8553
 
 	void AddAttribute(Attribute const & _attribute) {
 		m_attributes.push_back(_attribute);
@@ -101,7 +74,6 @@ public:
 	std::vector<Attribute> const & Attributes(void) const {
 		return m_attributes;
 	}
-
 	///search for attribute_definitoin's attribute_name,the second parameter will contain these class
 	bool AttributeNameSearch(const std::string & name, bool output = false, std::ostream & os = std::cout) const;
 	bool AttributeNameSearch(const std::string & name, Attribute & at) const;
@@ -121,24 +93,6 @@ public:
 	}
 
 	///output
-<<<<<<< HEAD
-	void PrintNodes(std::ostream & os) const;
-	void PrintMessages(std::ostream & os) const;
-	void PrintComments(std::ostream & os) const;
-	void PrintAttributes(std::ostream & os) const;
-	void PrintAttributeValues(std::ostream & os) const;
-	void PrintSignalValues(std::ostream & os) const;
-	void PrintDescriptor(std::ostream & os) const;
-	
-private:
-
-	std::vector<Message> m_messages;
-	std::vector<Comment> m_comments;
-	std::vector<AttributeValue> m_attributevalues;
-	std::vector<SignalValue> m_signalvalues;
-	std::vector<Attribute> m_attributes;///< The attributes container contains the attribute section.
-	std::vector<Node> m_nodes;///< The nodes container contains the node section.
-=======
 	void PrintNodes(std::ostream & os)const;
 	void PrintMessages(std::ostream & os)const;
 	void PrintComments(std::ostream & os)const;
@@ -156,7 +110,6 @@ private:
 	std::vector<SignalValue> m_signalvalues;//<signalvalues container include signalvalue
 	std::vector<Attribute> m_attributes;//< attributes container include attribute
 	std::vector<Node> m_nodes;//< nodes container include node
->>>>>>> 9475be87085c3c70ace0cd7122fcb51ddd3d8553
 };
 
 
